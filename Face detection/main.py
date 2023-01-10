@@ -40,7 +40,7 @@ s = serial.Serial('COM3',9600)
 
 
 
-img = cv2.imread('4.jpg') #read image
+img = cv2.imread('2.jpg') #read image
 font = cv2.FONT_HERSHEY_SIMPLEX # font used to display text
 #img =cv2.resize(img,(0,0),fx=0.5,fy=.5) # resize the image to half
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # convert image to grey scale (algorithm only works for grey scale images)
