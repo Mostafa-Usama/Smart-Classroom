@@ -1,9 +1,6 @@
-import sys
 import time
 import numpy as np
-#import tensorflow as tf
 import tensorflow as tf
-# tf.disable_v2_behavior()
 import cv2
 
 
@@ -33,9 +30,13 @@ class FROZEN_GRAPH_HEAD():
 
         heads = list()
         idx = 1
+        r = 0
+        l = 0 
 
         for score, box, name in zip(scores, boxes, classes):
             if name == 1 and score > 0.5:
+                #cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 3) #draw rectangle on the faces (image,top left point,bottom right point, color, thickness)
+               
                 # ymin, xmin, ymax, xmax = box
                 left = int((box[1])*im_width)
                 top = int((box[0])*im_height)
@@ -44,11 +45,15 @@ class FROZEN_GRAPH_HEAD():
 
                 cropped_head = np.array(image[top:bottom, left:right])
 
+                
                 width = right - left
                 height = bottom - top
                 bottom_mid = (left + int(width / 2), top + height)
                 confidence = score
-                #label = name
+                if (left + (left + width))/2 >= im_width/2:
+                    r +=1
+                else:
+                    l +=1
 
                 mydict = {
                     "head_id": idx,
@@ -66,11 +71,9 @@ class FROZEN_GRAPH_HEAD():
                     }
                 heads.append(mydict)
                 idx += 1
-
                 cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2, 8)
-                #cv2.putText(image, 'score: {:.2f}%'.format(score), (left-5, top-5), 0, 0.55, (0,255,255),2)
 
-        return image, heads
+        return image, heads, r, l
 
 
     def run(self, image, im_width, im_height):
@@ -99,12 +102,8 @@ class FROZEN_GRAPH_HEAD():
         elapsed_time = time.time() - start_time
         self.inference_list.append(elapsed_time)
         self.count = self.count + 1
-        #average_inference = sum(self.inference_list)/self.count
-        # print('Average inference time: {}'.format(average_inference))
-
-        # return (boxes, scores, classes, num_detections)
 
         # Draw bounding boxes on the image
-        image, heads = self.draw_bounding_box(image, scores, boxes, classes, im_width, im_height)
+        image, heads, r, l = self.draw_bounding_box(image, scores, boxes, classes, im_width, im_height)
 
-        return image, heads
+        return image, heads, r, l
