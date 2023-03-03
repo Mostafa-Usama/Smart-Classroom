@@ -3,6 +3,7 @@ from tkinter import *
 from Interface import draw,s,getMode,getMax
 import _thread
 from Graph_Head import FROZEN_GRAPH_HEAD
+import time
 
 left = 0
 right = 0
@@ -25,7 +26,7 @@ while True:
     while auto:
         Max_Number = getMax()
         auto = getMode()  
-        image = cv2.imread("Test/6.jpg")
+        image = cv2.imread("Test/7.jpg")
         #ret, image = cap.read()
         # if ret == 0:
         #     break
@@ -34,13 +35,13 @@ while True:
         image = cv2.flip(image, 1)
 
         boxes, scores, right, left = tDetector.run(image,im_width,im_height)
-        cv2.imshow("HEAD DETECTION USING FROZEN GRAPH", image)
+        #cv2.imshow("HEAD DETECTION USING FROZEN GRAPH", image)
 
         k = cv2.waitKey(1) & 0xff
         if k == ord('q') or k == 27:
             break
 
-            #cv2.line(img, (width//2, 0), (width//2, heghit), (0, 255, 0), 2)
+        # cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)
 
             
 
@@ -63,7 +64,7 @@ while True:
             fe = '4'
             s.write(fe.encode('utf-8'))
         print(fe)
-                
+        time.sleep(10)
         #cap.release()
 
         #cv2.destroyAllWindows()
