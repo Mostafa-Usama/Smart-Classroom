@@ -1,6 +1,6 @@
 import serial 
 from tkinter import * 
-
+import tkinter.ttk as tk
 
 
 global MAX_NUMBER
@@ -15,9 +15,12 @@ def draw():
     
     
     root = Tk()
+    style = tk.Style()
+    style.configure("BW.TRadiobutton",font=("Arial",17))
     root.title("Smart Classroom")
     root.geometry("800x600")
     root.resizable(False,False)
+    root.iconbitmap("logo2.ico")
     
     r = IntVar()
     
@@ -27,7 +30,6 @@ def draw():
         global MAX_NUMBER
         if num == 5:
           
-            #MAX_NUMBER += 1
             if flag_green:
                 ton1.config(image=on_image)
                 flag_green = False
@@ -61,22 +63,16 @@ def draw():
             auto = True
             getMode()
             print(auto)
-            # green.config(state=DISABLED,fg="#134982")
-            # red.config(state=DISABLED,fg="#134982")
             ton1.config(state=DISABLED)
             ton2.config(state=DISABLED)
-            toff1.config(state=DISABLED)
-            toff2.config(state=DISABLED)
+    
         elif value == 2:  
             auto = False
             getMode()
             print(auto)    
-            # green.config(state=ACTIVE,fg="#134982")
-            # red.config(state=ACTIVE,fg="#134982")
             ton1.config(state=ACTIVE)
             ton2.config(state=ACTIVE)
-            toff1.config(state=ACTIVE)
-            toff2.config(state=ACTIVE)
+            
 
 
     def adjustNumber(value):
@@ -88,49 +84,62 @@ def draw():
             if not (MAX_NUMBER <= 1):
                 MAX_NUMBER -= 1
                 students.config(text=MAX_NUMBER)
+    
+
+
     plus_image = PhotoImage(file="plus.png")
     minus_image = PhotoImage(file="minus.png")
     on_image = PhotoImage(file="on.png")
     off_image = PhotoImage(file="off.png")
- 
-    configs =Label(root,text="Configurations",fg="#00BDC9",font=("Arial",30),padx=5)
+    logo_image = PhotoImage(file="logo_image.png")
+    
+    l = Label(image=logo_image)   
+    configs =Label(root,text="Configurations",fg="#00BDC9",font=("Arial",30,"italic","underline"),padx=5)
     line = Label(root,fg="#134982",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
-    number = Label(root,text=f"Students per section", font=("Arial",20),fg="#134982")
-    students = Label(root,text=MAX_NUMBER,font=("Arial",20),fg="#EC639E")
+    number = Label(root,text=f"Students per section", font=("Arial",20,"bold"),fg="#134982")
+    students = Label(root,text=MAX_NUMBER,font=("Arial",20),fg="black")
     increase = Button(root,text="+",font=("Arial",15),command=lambda:adjustNumber(1),bd=0,image=plus_image)
     decrease = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustNumber(2),image=minus_image,bd=0)
 
-    modes = Label(root,text="Modes",font=("Arial",20),fg="#134982")
-    autos = Radiobutton(root,text="Auto",variable=r,activeforeground="#EC639E",value=1,command=lambda:mode(r.get()),font=("Arial",15),fg="#EC639E")
-    manual = Radiobutton(root,text="Manual",variable=r,activeforeground="#EC639E",value=2,command=lambda:mode(r.get()),font=("Arial",15),foreground="#EC639E")
+    modes = Label(root,text="Modes",font=("Arial",20,"bold"),fg="#134982")
+    autos = tk.Radiobutton(root,text="Auto",variable=r,value=1,command=lambda:mode(r.get()),style="BW.TRadiobutton")
+    manual = tk.Radiobutton(root,text="Manual",variable=r,value=2,command=lambda:mode(r.get()),style="BW.TRadiobutton")
 
-    devices =Label(root,text="Device Control",fg="#00BDC9",font=("Arial",30),padx=5)
+    devices =Label(root,text="Device Control",fg="#00BDC9",font=("Arial",30,"italic","underline"),padx=5)
     
 
-    green = Label(root,text="Green", font=("Arial",20),fg="#134982")
-    red = Label(root,text="Red",font=("Arial",20),fg="#134982")
+    green = Label(root,text="Green LED", font=("Arial",20,"bold"),fg="#134982")
+    red = Label(root,text="Red LED",font=("Arial",20,"bold"),fg="#134982")
     ton1 = Button(image=on_image,command=lambda:on(5),bd=0,padx=20)
-    toff1 = Button(text="Turn off",command=lambda:on(6),bd=0)
     ton2 = Button(root,image=on_image,command=lambda:on(7),bd=0)
-    toff2 = Button(root,text="Turn off",command=lambda:on(8),bd=0)
 
-    configs.place(x=280,y=40)
-    number.place(x=30,y=150)
-    increase.place(x=200,y=200)
-    students.place(x=140,y=200)
-    decrease.place(x=80,y=200)
-    modes.place(x=600,y=150)
-    autos.place(x=550,y=200)
-    manual.place(x=650,y=200)
-    line.place(x=0,y=250)
-    devices.place(x=260,y=330)
-    green.place(x=600,y=400)
+
+    l.place(x=225,y=-80)
+    
+    configs.place(x=260,y=130)
+    
+    number.place(x=30,y=220)
+    increase.place(x=200,y=270)
+    students.place(x=145,y=270)
+    decrease.place(x=80,y=270)
+
+    modes.place(x=600,y=220)
+    autos.place(x=550,y=270)
+    manual.place(x=650,y=270)
+    
+    line.place(x=0,y=300)
+    
+    devices.place(x=260,y=380)
+    
+    green.place(x=560,y=450)
     ton1.place(x=600,y=500)
-    red.place(x=100,y=400)
+    red.place(x=60,y=450)
     ton2.place(x=80,y=500)
 
     mode(1)
     mainloop()
+
+
 
 def getMode():
     return auto
@@ -138,4 +147,4 @@ def getMax():
     return MAX_NUMBER
 
 
-draw()
+#draw()

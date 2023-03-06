@@ -21,7 +21,7 @@ tDetector = FROZEN_GRAPH_HEAD(PATH_TO_CKPT_HEAD)
 #cap = cv2.VideoCapture(source)
 
 while True:
-
+    
     auto = getMode()   
     while auto:
         Max_Number = getMax()
@@ -35,7 +35,7 @@ while True:
         image = cv2.flip(image, 1)
 
         boxes, scores, right, left = tDetector.run(image,im_width,im_height)
-        #cv2.imshow("HEAD DETECTION USING FROZEN GRAPH", image)
+        cv2.imshow("HEAD DETECTION USING FROZEN GRAPH", image)
 
         k = cv2.waitKey(1) & 0xff
         if k == ord('q') or k == 27:
