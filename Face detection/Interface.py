@@ -147,4 +147,4 @@ def getMax():
     return MAX_NUMBER
 
 
-#draw()
+draw()
