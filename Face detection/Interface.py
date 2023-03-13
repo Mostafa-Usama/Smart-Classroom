@@ -111,7 +111,6 @@ class Application_Interface:
 
         if username=="admin" and password=="admin":
             self.window.withdraw()
-            self.logged=True
             self.Admin_Page()      
         else:
             self.message_label.config(text="Please enter a valid username and password")
@@ -367,4 +366,4 @@ def getMax():
     return MAX_NUMBER
     
 app = Application_Interface()
-app.run()
+#app.run()
