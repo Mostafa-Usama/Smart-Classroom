@@ -2,3 +2,4 @@ opencv-python
 pyserial
 tensorflow
 numpy
+sqlite3
