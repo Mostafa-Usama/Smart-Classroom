@@ -48,6 +48,7 @@ class Application_Interface:
         self.passwordEntry.place(x=370,y=435,height=28)  
         self.usernameLabel.place(x=200,y=330)
         self.passwordLabel.place(x=200,y=430)
+
         self.con = sqlite3.connect("Database.db")
         self.cr = self.con.cursor()
         self.cr.execute(""" CREATE TABLE IF NOT EXISTS users (ID INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(30), password VARCHAR(30)) """)
@@ -121,32 +122,40 @@ class Application_Interface:
         else:
             messagebox.showerror("Failed","Please enter a valid username and password")
 
-    def Admin_Page(self):
+    
+
+    def Options_page(self):
     
         root = Toplevel()
 
         def disable_event():
             self.opened = False
-        
+
+        def back():
+            root.destroy()
+            self.Admin_Page()
+
         def insert_user():
+            name=namee.get()
             username = usere.get()
-            passw = passe.get()
-            if username and password:
+            password = passe.get()
+            if name and username and password:
                 self.cr.execute("SELECT * FROM users WHERE username=?", (username,))
                 user = self.cr.fetchone()
                 if not user:
                     con = sqlite3.connect("Database.db")
                     cur = con.cursor()
-                    cur.execute("INSERT INTO users (username,password) VALUES (?,?)",(username,passw))
+                    cur.execute("INSERT INTO users (username,password,name) VALUES (?,?,?)",(username,password,name))
                     con.commit()
                     message_label.config(text="User inserted succesfully!",fg="green")
-                    message_label.place(x=360,y=400)
+                    
 
                 else:
-                    messagebox.showerror("Failed","User already exists!")
-                    
+                    message_label.config(text="User already exists!",fg="red")
+                message_label.place(x=360,y=440)   
             else:
-                messagebox.showerror("Failed","Please enter a valid username and password")
+                message_label.config(text="Please enter a valid username and password",fg="red")
+                message_label.place(x=300,y=440)
                     
         def delete_user():
             username = delete.get()
@@ -159,14 +168,98 @@ class Application_Interface:
                     cur.execute("DELETE FROM users WHERE username=?",(username,))
                     con.commit()
                     message_label.config(text="User deleted succesfully!",fg="green")
-                    message_label.place(x=360,y=580)
                 else:
-                    messagebox.showerror("Failed","User doesn't exist!")
-
+                    message_label.config(text="User doesn't exist!",fg="red")
+                message_label.place(x=360,y=600)
 
             else:
-                messagebox.showerror("Failed","Please enter a valid username and password")
+                message_label.config(text="Please enter a valid username and password",fg="red")
+                message_label.place(x=300,y=600)
 
+        root.protocol("WM_DELETE_WINDOW", disable_event)
+        root.title("Smart Classroom")
+        root.geometry("800x650+250+50")
+        root.resizable(False,False)
+        root.iconbitmap("icons\lamp.ico")
+
+        logo_image = PhotoImage(file="icons\SCR-logo2.png")
+        l = Label(root,image=logo_image) 
+
+        back_button=Button(root,text="Back",width=15, padx=7, command=back,pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+
+        line2 = Label(root,fg="black",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
+        insert=Label(root,text="Add User",font=('Sitka Small', 15, 'bold'))
+        name=Label(root,text="Full Name",font=("Arial",15))
+        user=Label(root,text="Username",font=("Arial",15))
+        password=Label(root,text="Password",font=("Arial",15))
+        usere= Entry(root, width=22,font=("bold",15))
+        passe= Entry(root, width=22,font=("bold",15),show='*')
+        namee= Entry(root, width=22,font=("bold",15))
+        line = Label(root,fg="black",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
+        insert_button=Button(root,text="Add",width=15, padx=7, command=insert_user,pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+        
+        back_button.place(x=50,y=50)
+        line2.place(x=0,y=185)
+        l.place(x=280,y=-35)
+        insert.place(x=350,y=200)
+        name.place(x=200,y=280)
+        user.place(x=200,y=340)
+        password.place(x=200,y=400)
+        namee.place(x=330,y=280,height=28)
+        usere.place(x=330,y=340,height=28)
+        passe.place(x=330,y=400,height=28)
+        insert_button.place(x=600,y=340)
+        line.place(x=0,y=450)
+
+        
+        
+        delete= Entry(root, width=22,font=("bold",15))
+        Delete_user=Label(root,text="Delete User",font=('Sitka Small', 15, 'bold'))
+        user_delete_label=Label(root,text="Username",font=("Arial",15))
+        Delete_button=Button(root,text="Delete",width=15, padx=7,command=delete_user, pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+        
+        Delete_user.place(x=340,y=465,height=28)
+        user_delete_label.place(x=200,y=550)
+        delete.place(x=330,y=550)  
+        Delete_button.place(x=600,y=550)
+
+        message_label =  Label(root, text="",font=("Arial",10,"bold"),fg="red")
+        message_label.place(x=360,y=380)
+
+
+        mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def Admin_Page(self):
+
+        def call_page():
+            root.withdraw()
+            self.Options_page()
+    
+        root = Toplevel()
+
+        def disable_event():
+            self.opened = False
+        
+        
         
         root.protocol("WM_DELETE_WINDOW", disable_event)
         root.title("Smart Classroom")
@@ -174,36 +267,67 @@ class Application_Interface:
         root.resizable(False,False)
         root.iconbitmap("icons\lamp.ico")
         
+        def show_data(event):
+            self.cr.execute("SELECT username,password,name FROM users WHERE name = ? ",(str(combo.get()),))
+            result = self.cr.fetchall()
+            namee.config(state="normal")
+            namee.delete(0,END)
+            namee.insert(0,result[0][2])
+            namee.config(state=DISABLED)
+            usere.config(state="normal")
+            usere.delete(0,END)
+            usere.insert(0,result[0][0])
+            usere.config(state=DISABLED)
+            passe.config(state="normal")
+            passe.delete(0,END)
+            passe.insert(0,result[0][1])
+            passe.config(state=DISABLED)
+        
+        def update_users():
+            self.cr.execute("SELECT name FROM users")
+            result = self.cr.fetchall()
+            lst = []
+            for i in result:
+                lst.append(i[0])
+            return lst
+            
+        
         #quit = Button(root,text="Exit",command=self.des,width=8,font=("Arial 10 bold") ,bd=3,bg="#AA0121",fg='white',activebackground='#AA0121')        
         logo_image = PhotoImage(file="icons\SCR-logo2.png")
-        message_label =  Label(root, text="",font=("Arial",10,"bold"),fg="red")
+        
         l = Label(root,image=logo_image)   
-        insert=Label(root,text="Insert User",font=('Sitka Small', 15, 'bold'))
+        show=Label(root,text="Show User",font=('Sitka Small', 15, 'bold'))
+        name=Label(root,text="Full Name",font=("Arial",15))
         user=Label(root,text="Username",font=("Arial",15))
         password=Label(root,text="Password",font=("Arial",15))
-        usere= Entry(root, width=22,font=("bold",15))
-        passe= Entry(root, width=22,font=("bold",15),show="*")
+        usere= Entry(root, width=22,font=("bold",15),state=DISABLED)
+        passe= Entry(root, width=22,font=("bold",15),state=DISABLED)
+        namee= Entry(root, width=22,font=("bold",15),state=DISABLED)
         line = Label(root,fg="black",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
-        Delete_user=Label(root,text="Delete User",font=('Sitka Small', 15, 'bold'))
-        delete= Entry(root, width=22,font=("bold",15))
-        user_delete_label=Label(root,text="Username",font=("Arial",15))
-        insert_button=Button(root,text="Insert",width=20, padx=7, command=insert_user,pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
-        Delete_button=Button(root,text="Delete",width=20, padx=7,command=delete_user, pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
 
+        
+
+        More_option=Button(root,text="More options",width=20, padx=7, command=call_page,pady=5, bg="#B33030", fg="white", font=('calibre', 12, 'bold'))
+  
+        value = StringVar()
+        combo = tk.Combobox(root,value=update_users(),state='readonly',textvariable=value,font=('calibre', 10, 'bold'))
+        combo.bind("<<ComboboxSelected>>",show_data)      
+        
         #quit.place(x=78,y=0)
-        #message_label.place(x=360,y=380)
+        
         l.place(x=280,y=-35)
-        insert.place(x=330,y=200)
-        user.place(x=200,y=270)
-        password.place(x=200,y=350)
-        usere.place(x=330,y=280,height=28)
-        passe.place(x=330,y=360,height=28)
-        line.place(x=0,y=420)
-        Delete_user.place(x=330,y=480,height=28)
-        user_delete_label.place(x=200,y=530)
-        delete.place(x=330,y=540)
-        insert_button.place(x=550,y=400)
-        Delete_button.place(x=550,y=580)
+        show.place(x=330,y=200)
+        combo.place(x=330,y=240,height=28)
+        name.place(x=200,y=280)
+        user.place(x=200,y=340)
+        password.place(x=200,y=400)
+        namee.place(x=330,y=280,height=28)
+        usere.place(x=330,y=340,height=28)
+        passe.place(x=330,y=400,height=28)
+        line.place(x=0,y=450)
+       
+        More_option.place(x=250,y=580)
+        
         
 
         mainloop()
