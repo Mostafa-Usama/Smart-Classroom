@@ -485,4 +485,4 @@ def getMax(): # Update Number of students
     return MAX_NUMBER
     
 app = Application_Interface()
-app.run()
+#app.run()
