@@ -43,7 +43,7 @@ while app.opened:
             if k == ord('q') or k == 27:
                 break
 
-            # cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)
+            
 
                 
 
@@ -70,7 +70,7 @@ while app.opened:
             for i in range(100):
                 if not app.opened:
                     break
-                time.sleep(0.1)
+                #time.sleep(0.1)
             #cap.release()
 
             #cv2.destroyAllWindows()

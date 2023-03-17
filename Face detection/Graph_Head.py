@@ -72,7 +72,7 @@ class FROZEN_GRAPH_HEAD():
                 heads.append(mydict)
                 idx += 1
                 cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2, 8)
-                
+                cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)
 
         return image, heads, r, l
 
