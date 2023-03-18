@@ -30,8 +30,10 @@ class FROZEN_GRAPH_HEAD():
 
         heads = list()
         idx = 1
-        r = 0
-        l = 0 
+        tr = 0
+        tl = 0
+        br = 0
+        bl = 0 
 
         for score, box, name in zip(scores, boxes, classes):
             if name == 1 and score > 0.5:
@@ -50,10 +52,19 @@ class FROZEN_GRAPH_HEAD():
                 height = bottom - top
                 bottom_mid = (left + int(width / 2), top + height)
                 confidence = score
-                if (left + (left + width))/2 >= im_width/2:
-                    r +=1
-                else:
-                    l +=1
+
+                mid_width = (left + (left + width))/2
+                mid_height = (bottom + (bottom - height))/ 2
+
+                if mid_width <= im_width/2 and mid_height <= im_height /2:
+                    tl +=1
+                elif  mid_width >= im_width/2 and mid_height <= im_height /2:
+                    tr +=1
+                
+                elif mid_width <= im_width/2 and mid_height >= im_height /2:
+                    bl +=1
+                elif mid_width >= im_width/2 and mid_height >= im_height /2:
+                    br +=1
 
                 mydict = {
                     "head_id": idx,
@@ -71,10 +82,11 @@ class FROZEN_GRAPH_HEAD():
                     }
                 heads.append(mydict)
                 idx += 1
-                cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2, 8)
-                
+                cv2.rectangle(image, (left, top), (right, bottom), (255, 0, 0), 2, 8)
+                cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)                
+                cv2.line(image, (0, im_height//2), (im_width, im_height//2), (0, 255, 0), 2)                
 
-        return image, heads, r, l
+        return image, heads, tl, tr, bl, br
 
 
     def run(self, image, im_width, im_height):
@@ -105,6 +117,6 @@ class FROZEN_GRAPH_HEAD():
         self.count = self.count + 1
 
         # Draw bounding boxes on the image
-        image, heads, r, l = self.draw_bounding_box(image, scores, boxes, classes, im_width, im_height)
+        image, heads, tl,tr,bl,br  = self.draw_bounding_box(image, scores, boxes, classes, im_width, im_height)
 
-        return image, heads, r, l
+        return image, heads, tl, tr, bl, br
