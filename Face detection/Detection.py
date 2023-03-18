@@ -46,6 +46,10 @@ while app.opened:
             if k == ord('q') or k == 27:
                 break
 
+            
+
+                
+
                     #cv2.putText(img,"Count of faces:"+str(len(faces)),(width//3,heghit//6),font,.9,(0,0,255),3) 
                     #text (image, string, bottom left point, font, font size, color, thickness)
                 #cv2.imshow('img',img)    # show image 
@@ -69,7 +73,7 @@ while app.opened:
             for i in range(100):
                 if not app.opened:
                     break
-                time.sleep(0.1)
+                #time.sleep(0.1)
             #cap.release()
 
             #cv2.destroyAllWindows()
