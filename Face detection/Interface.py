@@ -31,7 +31,7 @@ class Application_Interface:
         self.window.title("Login")
         txt ="Welcome, you'll see that saving power will be easier than before!" 
         self.welcome = Label(self.window,font=("Arial",15,"italic"),fg="Green")
-       # self.quit = Button(self.window,text="Exit",command=self.des,width=8,font=("Arial 10 bold") ,bd=3,bg="#AA0121",fg='white',activebackground='#AA0121')
+        #self.quit = Button(self.window,text="Exit",command=self.des,width=8,font=("Arial 10 bold") ,bd=3,bg="#AA0121",fg='white',activebackground='#AA0121')
         self.usernameEntry = Entry(self.window, width=22,font=("bold",15))  
         self.passwordEntry = Entry(self.window, width=22,font=("bold",15),show="*")
         self.usernameLabel = Label(self.window, text="Username",font=('Sitka Small', 15, 'bold'))
@@ -322,7 +322,7 @@ class Application_Interface:
         root.geometry("1400x800+250+50")
         root.resizable(False,False)
         root.iconbitmap("icons/lamp.ico")  
-        #root.attributes('-fullscreen', True)
+        root.attributes('-fullscreen', True)
   
         r = IntVar()
         
@@ -462,6 +462,28 @@ class Application_Interface:
                 fan1.config(bg="#111111",fg="#E94560")
                 ton1.config(bg="#111111",activebackground="#111111")
                 ton2.config(bg="#111111",activebackground="#111111")
+                temp_label.config(bg="#111111",activebackground="#111111",fg="#E94560") 
+                tempe.config(bg="#111111",activebackground="#111111",fg="white")
+                increase_temp.config(bg="#111111",activebackground="#111111")
+                decrease_temp.config(bg="#111111",activebackground="#111111")
+                section1.config(bg="#111111",activebackground="#111111",fg="#E94560")
+                section2.config(bg="#111111",activebackground="#111111",fg="#E94560")
+                section3.config(bg="#111111",activebackground="#111111",fg="#E94560")
+                section4.config(bg="#111111",activebackground="#111111",fg="#E94560")
+                ton3.config(bg="#111111",activebackground="#111111")
+                ton4.config(bg="#111111",activebackground="#111111")
+                ton5.config(bg="#111111",activebackground="#111111")
+                ton6.config(bg="#111111",activebackground="#111111")
+                ton7.config(bg="#111111",activebackground="#111111")
+                ton8.config(bg="#111111",activebackground="#111111")
+                led2.config(bg="#111111",fg="#E94560")
+                fan2.config(bg="#111111",fg="#E94560")
+                led3.config(bg="#111111",fg="#E94560")
+                fan3.config(bg="#111111",fg="#E94560")
+                led4.config(bg="#111111",fg="#E94560")
+                fan4.config(bg="#111111",fg="#E94560")
+
+
             else:
                 darkMood = False
                 dark_mood.config(text="Dark Mood",bg='black',fg='#F0F0F0')
@@ -480,6 +502,26 @@ class Application_Interface:
                 fan1.config(bg="#F0F0F0",fg="#134982")
                 ton1.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 ton2.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                temp_label.config(bg="#F0F0F0",fg="#AA0121") 
+                tempe.config(bg="#F0F0F0",fg="black")
+                increase_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                decrease_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                section1.config(bg="#F0F0F0",fg="#AA0121")
+                section2.config(bg="#F0F0F0",fg="#AA0121")
+                section3.config(bg="#F0F0F0",fg="#AA0121")
+                section4.config(bg="#F0F0F0",fg="#AA0121")
+                ton3.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                ton4.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                ton5.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                ton6.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                ton7.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                ton8.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                led2.config(bg="#F0F0F0",fg="#134982")
+                fan2.config(bg="#F0F0F0",fg="#134982")
+                led3.config(bg="#F0F0F0",fg="#134982")
+                fan3.config(bg="#F0F0F0",fg="#134982")
+                led4.config(bg="#F0F0F0",fg="#134982")
+                fan4.config(bg="#F0F0F0",fg="#134982")
 
             
         def mode(value): # Mode Radio Button
@@ -530,7 +572,7 @@ class Application_Interface:
         off_image = PhotoImage(file="icons/off.png")
         logo_image = PhotoImage(file="icons/LightMode1.png")
         dark_logo = PhotoImage(file="icons/DarkMode1.png")
-
+        quit = Button(root,text="Exit",command=self.des,width=8,font=("Arial 10 bold") ,bd=3,bg="#AA0121",fg='white',activebackground='#AA0121')
         l = Label(root,image=logo_image)   
         configs =Label(root,text="Configurations",fg="#AA0121",font=("Arial",30,"italic","underline"),padx=5)
         line = Label(root,fg="#134982",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
@@ -544,7 +586,7 @@ class Application_Interface:
         increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
         decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0)        
              
-        dark_mood = Button(root,text="Dark Mood",command=dark,width=8,font=("Arial 10 bold") ,bd=3,bg="black",fg='White',activeforeground='white',activebackground='black')
+        dark_mood = Button(root,text="Dark Mode",command=dark,width=8,font=("Arial 10 bold") ,bd=3,bg="black",fg='White',activeforeground='white',activebackground='black')
         modes = Label(root,text="Modes",font=("Arial",20,"bold"),fg="#134982")
         autos = tk.Radiobutton(root,text="Auto",variable=r,value=1,command=lambda:mode(r.get()),style="BW.TRadiobutton")
         manual = tk.Radiobutton(root,text="Manual",variable=r,value=2,command=lambda:mode(r.get()),style="BW.TRadiobutton")
@@ -578,7 +620,8 @@ class Application_Interface:
         tempe.place(x=1160,y=320)
         decrease_temp.place(x=1100,y=320)
         increase_temp.place(x=1220,y=320)
-        
+        quit.place(x=78,y=0)
+
         l.place(x=650,y=-35)
         dark_mood.place(x=0,y=0)
         configs.place(x=640,y=180)
