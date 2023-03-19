@@ -1,6 +1,6 @@
 import cv2
 from tkinter import * 
-from Interface import s,getMode,getMax, Application_Interface
+from Interface import s,getMode,getMax,getTemp, Application_Interface
 import _thread
 from Graph_Head import FROZEN_GRAPH_HEAD
 import time
@@ -10,7 +10,10 @@ top_right = 0
 bottom_left = 0
 bottom_right = 0
 
+temp = getTemp()
+TEMPREATURE = 18
 Max_Number = getMax()
+
 app = Application_Interface()
 thread = _thread.start_new_thread(app.run,())
 
@@ -56,18 +59,54 @@ while app.opened:
 
             print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_right}")
 
-            if 0 >= Max_Number and 0 >= Max_Number:
-                fe = '1'
-                s.write(fe.encode('utf-8'))
-            elif 0 >= Max_Number and 0 < Max_Number:
-                fe = '2'
-                s.write(fe.encode('utf-8'))
-            elif 0 < Max_Number and 0 >= Max_Number:
-                fe = '3'
-                s.write(fe.encode('utf-8'))
+            if top_left >= Max_Number:
+                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                    fe = '1'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    fe = '9'
+                    s.write(fe.encode('utf-8'))
             else:
-                fe = '4'
+                fe = '5'
                 s.write(fe.encode('utf-8'))
+
+
+            if top_right >= Max_Number: #and 0 < Max_Number:
+                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                    fe = '2'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    fe = '10'
+                    s.write(fe.encode('utf-8'))
+
+            else:
+                fe = '6'
+                s.write(fe.encode('utf-8'))
+
+
+            if  bottom_left >= Max_Number: #and 0 >= Max_Number:
+                if temp >= TEMPREATURE:#and 0 >= Max_Number:
+                    fe = '3'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    fe = '11'
+                    s.write(fe.encode('utf-8'))
+
+            else:
+                fe = '7'
+                s.write(fe.encode('utf-8'))
+
+            if bottom_right >= Max_Number:
+                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                    fe = '4'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    fe = '12'
+                    s.write(fe.encode('utf-8'))
+            else:
+                fe = '8'
+                s.write(fe.encode('utf-8'))
+
             print(fe)
 
             for i in range(100):

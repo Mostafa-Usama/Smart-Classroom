@@ -10,6 +10,10 @@ global MAX_NUMBER
 MAX_NUMBER = 10
 global auto
 auto = True
+global temp
+temp = 18
+global lst
+lst = [False,False,False,False,False,False,False,False]
 
 class Application_Interface:
     logged=False
@@ -307,9 +311,7 @@ class Application_Interface:
         def disable_event(): # Close Window
             self.opened = False
         
-
-        global flag_green
-        global flag_red
+        global lst
         global darkMood
         darkMood = False
         flag_green = False
@@ -319,46 +321,122 @@ class Application_Interface:
         root.protocol("WM_DELETE_WINDOW", disable_event)
         style.configure("BW.TRadiobutton",font=("Arial",17))
         root.title("Smart Classroom")
-        root.geometry("800x650+250+50")
+        root.geometry("1100x800+250+50")
         root.resizable(False,False)
-        root.iconbitmap("icons/lamp.ico")    
+        root.iconbitmap("icons/lamp.ico")  
+        root.attributes('-fullscreen', True)
+  
         r = IntVar()
         
 
         def on(num): # On/Off Buttons
-            global flag_green
-            global flag_red
+            
             global MAX_NUMBER
             global auto
+            global lst
             
+
             if auto:
                 ton1.config(command=None)
-                ton2.config(command=None) 
+                ton2.config(command=None)
+                ton3.config(command=None)
+                ton4.config(command=None) 
+                ton5.config(command=None)
+                ton6.config(command=None) 
+                ton7.config(command=None)
+                ton8.config(command=None)  
                 
-            elif num == 5:
-                if flag_green:
+            elif num == 0:
+                if lst[num]:
                     ton1.config(image=on_image)
-                    flag_green = False
-                    fe = '5'
+                    lst[num] = False
+                    fe = '1'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton1.config(image=off_image)
-                    flag_green = True
+                    lst[num] = True
                     fe = '6'
                     s.write(fe.encode('utf-8'))
 
-            elif num == 7:
-                if flag_red:
+            elif num == 1:
+                if lst[num]:
                     ton2.config(image=on_image)
-                    flag_red = False
+                    lst[num] = False
                     fe = '7'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton2.config(image=off_image)
-                    flag_red = True
+                    lst[num] = True
                     fe = '8'
                     s.write(fe.encode('utf-8'))
-            
+            elif num == 2:
+                if lst[num]:
+                    ton3.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton3.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+            elif num == 3:
+                if lst[num]:
+                    ton4.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton4.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+            elif num == 4:
+                if lst[num]:
+                    ton5.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton5.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+            elif num == 5:
+                if lst[num]:
+                    ton6.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton6.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+            elif num == 6:
+                if lst[num]:
+                    ton7.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton7.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+            elif num == 7:
+                if lst[num]:
+                    ton8.config(image=on_image)
+                    lst[num] = False
+                    fe = '5'
+                    s.write(fe.encode('utf-8'))
+                else:
+                    ton8.config(image=off_image)
+                    lst[num] = True
+                    fe = '6'
+                    s.write(fe.encode('utf-8'))
+
+                    
 
         r.set("1")
 
@@ -382,8 +460,8 @@ class Application_Interface:
                 #autos.config(bg="#111111")
                 #manual.config(bg="#111111")
                 devices.config(bg="#111111",fg="#4E31AA")
-                green.config(bg="#111111",fg="#E94560")
-                red.config(bg="#111111",fg="#E94560")
+                led1.config(bg="#111111",fg="#E94560")
+                fan1.config(bg="#111111",fg="#E94560")
                 ton1.config(bg="#111111",activebackground="#111111")
                 ton2.config(bg="#111111",activebackground="#111111")
             else:
@@ -400,8 +478,8 @@ class Application_Interface:
                 decrease.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 modes.config(bg="#F0F0F0",fg="#134982")
                 devices.config(bg="#F0F0F0",fg="#AA0121")
-                green.config(bg="#F0F0F0",fg="#134982")
-                red.config(bg="#F0F0F0",fg="#134982")
+                led1.config(bg="#F0F0F0",fg="#134982")
+                fan1.config(bg="#F0F0F0",fg="#134982")
                 ton1.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 ton2.config(bg="#F0F0F0",activebackground="#F0F0F0")
 
@@ -415,8 +493,14 @@ class Application_Interface:
             elif value == 2:  
                 auto = False
                 getMode()
-                ton1.config(state=ACTIVE,command=lambda:on(5))
-                ton2.config(state=ACTIVE,command=lambda:on(7))
+                ton1.config(state=ACTIVE,command=lambda:on(0))
+                ton2.config(state=ACTIVE,command=lambda:on(1))
+                ton3.config(state=ACTIVE,command=lambda:on(2))
+                ton4.config(state=ACTIVE,command=lambda:on(3))
+                ton5.config(state=ACTIVE,command=lambda:on(4))
+                ton6.config(state=ACTIVE,command=lambda:on(5))
+                ton7.config(state=ACTIVE,command=lambda:on(6))
+                ton8.config(state=ACTIVE,command=lambda:on(7))
                 
 
         def adjustNumber(value): # Plus and Minus sign buttons
@@ -428,6 +512,17 @@ class Application_Interface:
                 if not (MAX_NUMBER <= 1):
                     MAX_NUMBER -= 1
                     students.config(text=MAX_NUMBER)
+
+
+        def adjustTemp(value): # Plus and Minus sign buttons
+                global temp
+                if value == 1:
+                    temp += 1
+                    tempe.config(text=temp)
+                else:
+                    if not (temp <= 1):
+                        temp -= 1
+                        tempe.config(text=temp)
 
 
         plus_image = PhotoImage(file="icons/plus.png")
@@ -443,34 +538,85 @@ class Application_Interface:
         number = Label(root,text=f"Students per section", font=("Arial",20,"bold"),fg="#134982")
         students = Label(root,text=MAX_NUMBER,font=("Arial",20),fg="black")
         increase = Button(root,text="+",font=("Arial",15),command=lambda:adjustNumber(1),bd=0,image=plus_image)
-        decrease = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustNumber(2),image=minus_image,bd=0)        
+        decrease = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustNumber(2),image=minus_image,bd=0)   
+        
+        temp_label = Label(root,text=f"Tempreature", font=("Arial",20,"bold"),fg="#134982")
+        tempe = Label(root,text=temp,font=("Arial",20),fg="black")
+        increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
+        decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0)        
+             
         dark_mood = Button(root,text="Dark Mood",command=dark,width=8,font=("Arial 10 bold") ,bd=3,bg="black",fg='White',activeforeground='white',activebackground='black')
         modes = Label(root,text="Modes",font=("Arial",20,"bold"),fg="#134982")
         autos = tk.Radiobutton(root,text="Auto",variable=r,value=1,command=lambda:mode(r.get()),style="BW.TRadiobutton")
         manual = tk.Radiobutton(root,text="Manual",variable=r,value=2,command=lambda:mode(r.get()),style="BW.TRadiobutton")
         devices =Label(root,text="Device Control",fg="#AA0121",font=("Arial",30,"italic","underline"),padx=5)
-        green = Label(root,text="Green LED", font=("Arial",20,"bold"),fg="#134982")
-        red = Label(root,text="Red LED",font=("Arial",20,"bold"),fg="#134982")
-        ton1 = Button(root,image=on_image,command=lambda:on(5),bd=0,padx=20)
-        ton2 = Button(root,image=on_image,command=lambda:on(7),bd=0)
-    
-        l.place(x=280,y=-35)
-        dark_mood.place(x=0,y=0)
-        configs.place(x=270,y=180)
-        number.place(x=30,y=270)
-        increase.place(x=200,y=320)
-        students.place(x=145,y=320)
-        decrease.place(x=80,y=320)
-        modes.place(x=600,y=270)
-        autos.place(x=550,y=320)
-        manual.place(x=650,y=320)
-        line.place(x=0,y=350)
-        devices.place(x=260,y=400)
-        green.place(x=560,y=500)
-        ton1.place(x=600,y=550)
-        red.place(x=60,y=500)
-        ton2.place(x=80,y=550)
 
+        section1 = Label(root,text="Section 1", font=("Arial",20,"bold"),fg="#134982") 
+        led1 = Label(root,text="LED", font=("Arial",20,"bold"),fg="#134982")
+        fan1 = Label(root,text="Fan",font=("Arial",20,"bold"),fg="#134982")
+        ton1 = Button(root,image=on_image,command=lambda:on(0),bd=0,padx=20)
+        ton2 = Button(root,image=on_image,command=lambda:on(1),bd=0)
+        
+        section2 = Label(root,text="Section 2", font=("Arial",20,"bold"),fg="#134982")
+        led2 = Label(root,text="LED", font=("Arial",20,"bold"),fg="#134982")
+        fan2 = Label(root,text="Fan",font=("Arial",20,"bold"),fg="#134982")
+        ton3 = Button(root,image=on_image,command=lambda:on(2),bd=0,padx=20)
+        ton4 = Button(root,image=on_image,command=lambda:on(3),bd=0)
+
+        section3 = Label(root,text="Section 3", font=("Arial",20,"bold"),fg="#134982")
+        led3 = Label(root,text="LED", font=("Arial",20,"bold"),fg="#134982")
+        fan3 = Label(root,text="Fan",font=("Arial",20,"bold"),fg="#134982")
+        ton5 = Button(root,image=on_image,command=lambda:on(4),bd=0,padx=20)
+        ton6 = Button(root,image=on_image,command=lambda:on(5),bd=0)
+
+        section4 = Label(root,text="Section 4", font=("Arial",20,"bold"),fg="#134982")
+        led4 = Label(root,text="LED", font=("Arial",20,"bold"),fg="#134982")
+        fan4 = Label(root,text="Fan",font=("Arial",20,"bold"),fg="#134982")
+        ton7 = Button(root,image=on_image,command=lambda:on(6),bd=0,padx=20)
+        ton8 = Button(root,image=on_image,command=lambda:on(7),bd=0)
+
+        temp_label.place(x=1100,y=270)
+        tempe.place(x=1160,y=320)
+        decrease_temp.place(x=1100,y=320)
+        increase_temp.place(x=1220,y=320)
+        
+        l.place(x=650,y=-35)
+        dark_mood.place(x=0,y=0)
+        configs.place(x=640,y=180)
+        number.place(x=200,y=270)
+        increase.place(x=370,y=320)
+        students.place(x=320,y=320)
+        decrease.place(x=250,y=320)
+        modes.place(x=720,y=270)
+        autos.place(x=670,y=320)
+        manual.place(x=780,y=320)
+        line.place(x=0,y=350)
+        devices.place(x=630,y=400)
+        
+        section1.place(x=260,y=450)
+        led1.place(x=130,y=530)
+        ton1.place(x=220,y=510)
+        fan1.place(x=400,y=530)
+        ton2.place(x=480,y=510)
+        
+        section2.place(x=1060,y=450)
+        led2.place(x=930,y=530)
+        ton3.place(x=1020,y=510)
+        fan2.place(x=1200,y=530)    
+        ton4.place(x=1280,y=510)
+        
+        section3.place(x=260,y=650)
+        led3.place(x=130,y=730)
+        ton5.place(x=220,y=710)
+        fan3.place(x=400,y=730)
+        ton6.place(x=480,y=710)
+        
+        section4.place(x=1060,y=650)
+        led4.place(x=930,y=730)
+        ton7.place(x=1020,y=710)
+        fan4.place(x=1200,y=730)
+        ton8.place(x=1280,y=710)
+        
 
         mode(1)
         mainloop()
@@ -483,6 +629,9 @@ def getMode(): # Update Mode
 
 def getMax(): # Update Number of students
     return MAX_NUMBER
-    
+
+def getTemp():
+    return temp
+
 app = Application_Interface()
-#app.run()
+app.run()

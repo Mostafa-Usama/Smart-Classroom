@@ -1,1 +1,1 @@
-cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)
++250+50
