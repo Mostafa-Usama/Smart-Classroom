@@ -314,17 +314,15 @@ class Application_Interface:
         global lst
         global darkMood
         darkMood = False
-        flag_green = False
-        flag_red = False
         style = tk.Style()
         root = Toplevel()
         root.protocol("WM_DELETE_WINDOW", disable_event)
         style.configure("BW.TRadiobutton",font=("Arial",17))
         root.title("Smart Classroom")
-        root.geometry("1100x800+250+50")
+        root.geometry("1400x800+250+50")
         root.resizable(False,False)
         root.iconbitmap("icons/lamp.ico")  
-        root.attributes('-fullscreen', True)
+        #root.attributes('-fullscreen', True)
   
         r = IntVar()
         
@@ -350,90 +348,90 @@ class Application_Interface:
                 if lst[num]:
                     ton1.config(image=on_image)
                     lst[num] = False
-                    fe = '1'
+                    fe = 'a'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton1.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'b'
                     s.write(fe.encode('utf-8'))
 
             elif num == 1:
                 if lst[num]:
                     ton2.config(image=on_image)
                     lst[num] = False
-                    fe = '7'
+                    fe = 'c'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton2.config(image=off_image)
                     lst[num] = True
-                    fe = '8'
+                    fe = 'd'
                     s.write(fe.encode('utf-8'))
             elif num == 2:
                 if lst[num]:
                     ton3.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'e'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton3.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'f'
                     s.write(fe.encode('utf-8'))
             elif num == 3:
                 if lst[num]:
                     ton4.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'g'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton4.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'h'
                     s.write(fe.encode('utf-8'))
             elif num == 4:
                 if lst[num]:
                     ton5.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'i'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton5.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'j'
                     s.write(fe.encode('utf-8'))
             elif num == 5:
                 if lst[num]:
                     ton6.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'k'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton6.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'l'
                     s.write(fe.encode('utf-8'))
             elif num == 6:
                 if lst[num]:
                     ton7.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'm'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton7.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'n'
                     s.write(fe.encode('utf-8'))
             elif num == 7:
                 if lst[num]:
                     ton8.config(image=on_image)
                     lst[num] = False
-                    fe = '5'
+                    fe = 'o'
                     s.write(fe.encode('utf-8'))
                 else:
                     ton8.config(image=off_image)
                     lst[num] = True
-                    fe = '6'
+                    fe = 'p'
                     s.write(fe.encode('utf-8'))
 
                     
@@ -523,6 +521,7 @@ class Application_Interface:
                     if not (temp <= 1):
                         temp -= 1
                         tempe.config(text=temp)
+                
 
 
         plus_image = PhotoImage(file="icons/plus.png")
@@ -540,7 +539,7 @@ class Application_Interface:
         increase = Button(root,text="+",font=("Arial",15),command=lambda:adjustNumber(1),bd=0,image=plus_image)
         decrease = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustNumber(2),image=minus_image,bd=0)   
         
-        temp_label = Label(root,text=f"Tempreature", font=("Arial",20,"bold"),fg="#134982")
+        temp_label = Label(root,text=f"Temperature", font=("Arial",20,"bold"),fg="#134982")
         tempe = Label(root,text=temp,font=("Arial",20),fg="black")
         increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
         decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0)        
@@ -634,4 +633,4 @@ def getTemp():
     return temp
 
 app = Application_Interface()
-app.run()
+#app.run()

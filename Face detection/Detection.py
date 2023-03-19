@@ -10,8 +10,7 @@ top_right = 0
 bottom_left = 0
 bottom_right = 0
 
-temp = getTemp()
-TEMPREATURE = 18
+TEMPERATURE = 14
 Max_Number = getMax()
 
 app = Application_Interface()
@@ -32,6 +31,7 @@ while app.opened:
     if app.logged:
         auto = getMode()   
         while auto and app.opened:
+            temp=getTemp()
             Max_Number = getMax()
             auto = getMode()  
             image = cv2.imread("Test/6.jpg")
@@ -60,11 +60,11 @@ while app.opened:
             print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_right}")
 
             if top_left >= Max_Number:
-                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                if temp<= TEMPERATURE:#and 0 >= Max_Number:
                     fe = '1'
                     s.write(fe.encode('utf-8'))
                 else:
-                    fe = '9'
+                    fe = 'w'
                     s.write(fe.encode('utf-8'))
             else:
                 fe = '5'
@@ -72,11 +72,11 @@ while app.opened:
 
 
             if top_right >= Max_Number: #and 0 < Max_Number:
-                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                if temp<= TEMPERATURE:#and 0 >= Max_Number:
                     fe = '2'
                     s.write(fe.encode('utf-8'))
                 else:
-                    fe = '10'
+                    fe = 'x'
                     s.write(fe.encode('utf-8'))
 
             else:
@@ -85,11 +85,11 @@ while app.opened:
 
 
             if  bottom_left >= Max_Number: #and 0 >= Max_Number:
-                if temp >= TEMPREATURE:#and 0 >= Max_Number:
+                if temp <= TEMPERATURE:#and 0 >= Max_Number:
                     fe = '3'
                     s.write(fe.encode('utf-8'))
                 else:
-                    fe = '11'
+                    fe = 'y'
                     s.write(fe.encode('utf-8'))
 
             else:
@@ -97,11 +97,11 @@ while app.opened:
                 s.write(fe.encode('utf-8'))
 
             if bottom_right >= Max_Number:
-                if temp>= TEMPREATURE:#and 0 >= Max_Number:
+                if temp<= TEMPERATURE:#and 0 >= Max_Number:
                     fe = '4'
                     s.write(fe.encode('utf-8'))
                 else:
-                    fe = '12'
+                    fe = 'z'
                     s.write(fe.encode('utf-8'))
             else:
                 fe = '8'
