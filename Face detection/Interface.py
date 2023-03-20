@@ -14,6 +14,8 @@ global temp
 temp = 18
 global lst
 lst = [False,False,False,False,False,False,False,False]
+global fans
+fans=FALSE
 
 class Application_Interface:
     logged=False
@@ -332,7 +334,7 @@ class Application_Interface:
             global MAX_NUMBER
             global auto
             global lst
-            
+            global fans
 
             if auto:
                 ton1.config(command=None)
@@ -433,6 +435,16 @@ class Application_Interface:
                     lst[num] = True
                     fe = 'p'
                     s.write(fe.encode('utf-8'))
+            if num == 8:
+                if auto:
+                    if fans:
+                        te.config(image=off_image)
+                        fans = False
+                        
+                    else:
+                        te.config(image=on_image)
+                        fans = True
+                        
 
                     
 
@@ -463,9 +475,9 @@ class Application_Interface:
                 ton1.config(bg="#111111",activebackground="#111111")
                 ton2.config(bg="#111111",activebackground="#111111")
                 temp_label.config(bg="#111111",activebackground="#111111",fg="#E94560") 
-                tempe.config(bg="#111111",activebackground="#111111",fg="white")
-                increase_temp.config(bg="#111111",activebackground="#111111")
-                decrease_temp.config(bg="#111111",activebackground="#111111")
+                # tempe.config(bg="#111111",activebackground="#111111",fg="white")
+                te.config(bg="#111111",activebackground="#111111")
+                # decrease_temp.config(bg="#111111",activebackground="#111111")
                 section1.config(bg="#111111",activebackground="#111111",fg="#E94560")
                 section2.config(bg="#111111",activebackground="#111111",fg="#E94560")
                 section3.config(bg="#111111",activebackground="#111111",fg="#E94560")
@@ -503,9 +515,9 @@ class Application_Interface:
                 ton1.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 ton2.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 temp_label.config(bg="#F0F0F0",fg="#AA0121") 
-                tempe.config(bg="#F0F0F0",fg="black")
-                increase_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
-                decrease_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                # tempe.config(bg="#F0F0F0",fg="black")
+                te.config(bg="#F0F0F0",activebackground="#F0F0F0")
+                # decrease_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
                 section1.config(bg="#F0F0F0",fg="#AA0121")
                 section2.config(bg="#F0F0F0",fg="#AA0121")
                 section3.config(bg="#F0F0F0",fg="#AA0121")
@@ -554,15 +566,15 @@ class Application_Interface:
                     students.config(text=MAX_NUMBER)
 
 
-        def adjustTemp(value): # Plus and Minus sign buttons
-                global temp
-                if value == 1:
-                    temp += 1
-                    tempe.config(text=temp)
-                else:
-                    if not (temp <= 1):
-                        temp -= 1
-                        tempe.config(text=temp)
+        # def adjustTemp(value): # Plus and Minus sign buttons
+        #         global temp
+        #         if value == 1:
+        #             temp += 1
+        #             tempe.config(text=temp)
+        #         else:
+        #             if not (temp <= 1):
+        #                 temp -= 1
+        #                 tempe.config(text=temp)
                 
 
 
@@ -581,10 +593,14 @@ class Application_Interface:
         increase = Button(root,text="+",font=("Arial",15),command=lambda:adjustNumber(1),bd=0,image=plus_image)
         decrease = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustNumber(2),image=minus_image,bd=0)   
         
-        temp_label = Label(root,text=f"Temperature", font=("Arial",20,"bold"),fg="#134982")
-        tempe = Label(root,text=temp,font=("Arial",20),fg="black")
-        increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
-        decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0)        
+        temp_label = Label(root,text=f"Fans", font=("Arial",20,"bold"),fg="#134982")
+        # tempe = Label(root,text=temp,font=("Arial",20),fg="black")
+        # increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
+        # decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0) 
+
+        #temp_label = Label(root,text=f"Temperature", font=("Arial",20,"bold"),fg="#134982")
+        te = Button(root,image=off_image,command=lambda:on(8),bd=0,padx=20) 
+
              
         dark_mood = Button(root,text="Dark Mode",command=dark,width=8,font=("Arial 10 bold") ,bd=3,bg="black",fg='White',activeforeground='white',activebackground='black')
         modes = Label(root,text="Modes",font=("Arial",20,"bold"),fg="#134982")
@@ -616,10 +632,11 @@ class Application_Interface:
         ton7 = Button(root,image=on_image,command=lambda:on(6),bd=0,padx=20)
         ton8 = Button(root,image=on_image,command=lambda:on(7),bd=0)
 
-        temp_label.place(x=1100,y=270)
-        tempe.place(x=1160,y=320)
-        decrease_temp.place(x=1100,y=320)
-        increase_temp.place(x=1220,y=320)
+        temp_label.place(x=1155,y=270)
+        te.place(x=1150,y=300)
+        # tempe.place(x=1160,y=320)
+        # decrease_temp.place(x=1100,y=320)
+        # increase_temp.place(x=1220,y=320)
         quit.place(x=78,y=0)
 
         l.place(x=650,y=-35)
@@ -674,6 +691,8 @@ def getMax(): # Update Number of students
 
 def getTemp():
     return temp
+def getfan():
+    return fans
 
 app = Application_Interface()
 #app.run()

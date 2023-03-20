@@ -1,6 +1,6 @@
 import cv2
 from tkinter import * 
-from Interface import s,getMode,getMax,getTemp, Application_Interface
+from Interface import s,getfan,getMode,getMax,getTemp, Application_Interface
 import _thread
 from Graph_Head import FROZEN_GRAPH_HEAD
 import time
@@ -10,7 +10,7 @@ top_right = 0
 bottom_left = 0
 bottom_right = 0
 
-TEMPERATURE = 14
+# TEMPERATURE = 14
 Max_Number = getMax()
 
 app = Application_Interface()
@@ -60,7 +60,7 @@ while app.opened:
             print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_right}")
 
             if top_left >= Max_Number:
-                if temp<= TEMPERATURE:#and 0 >= Max_Number:
+                if getfan():#and 0 >= Max_Number: 
                     fe = '1'
                     s.write(fe.encode('utf-8'))
                 else:
@@ -72,7 +72,7 @@ while app.opened:
 
 
             if top_right >= Max_Number: #and 0 < Max_Number:
-                if temp<= TEMPERATURE:#and 0 >= Max_Number:
+                if getfan():#and 0 >= Max_Number:
                     fe = '2'
                     s.write(fe.encode('utf-8'))
                 else:
@@ -85,7 +85,7 @@ while app.opened:
 
 
             if  bottom_left >= Max_Number: #and 0 >= Max_Number:
-                if temp <= TEMPERATURE:#and 0 >= Max_Number:
+                if getfan():#and 0 >= Max_Number:
                     fe = '3'
                     s.write(fe.encode('utf-8'))
                 else:
@@ -97,7 +97,7 @@ while app.opened:
                 s.write(fe.encode('utf-8'))
 
             if bottom_right >= Max_Number:
-                if temp<= TEMPERATURE:#and 0 >= Max_Number:
+                if getfan():#and 0 >= Max_Number:
                     fe = '4'
                     s.write(fe.encode('utf-8'))
                 else:
