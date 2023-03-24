@@ -34,7 +34,7 @@ while app.opened:
             temp=getTemp()
             Max_Number = getMax()
             auto = getMode()  
-            image = cv2.imread("Test/6.jpg")
+            image = cv2.imread("Test/10.jpg")
             #ret, image = cap.read()
             # if ret == 0:
             #     break
