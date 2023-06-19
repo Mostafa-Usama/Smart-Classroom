@@ -286,9 +286,11 @@ class Application_Interface:
             # create_task(task_name, exe_path, start_time,end_time)
 
 
-        back_button=Button(root,text="Back",width=15, padx=7, command=back,pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+        back_button=Button(root,text="Back",width=15, padx=7, command=back,pady=5, activebackground="#B33030", activeforeground="white" ,bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
         back_button.place(x=50,y=50)
-        
+        studentLabel=Label(root,text="Study Table",font=("calibre",25,"bold"),fg="#2AAAFF")
+        studentLabel.place(x=320,y=50)
+
         sat = Label(root,text="Sat",font=("Arial",15))
         sun = Label(root,text="Sun",font=("Arial",15))
         mon = Label(root,text="Mon",font=("Arial",15))
@@ -309,9 +311,9 @@ class Application_Interface:
         
         f8t10 =Label(root,text="8-10",font=("calibre",15))
         f10t12 =Label(root,text="10-12",font=("calibre",15))
-        f12t2 =Label(root,text="12-02",font=("calibre",15))
-        f2t4 =Label(root,text="02-04",font=("calibre",15))
-        f4t6 =Label(root,text="04-06",font=("calibre",15))
+        f12t2 =Label(root,text="12-2",font=("calibre",15))
+        f2t4 =Label(root,text="2-4",font=("calibre",15))
+        f4t6 =Label(root,text="4-6",font=("calibre",15))
         
         f8t10.place(x=200,y=150)
         f10t12.place(x=300,y=150)
@@ -334,9 +336,9 @@ class Application_Interface:
             for j in range(5):
                 button_name = f"{i}{j}"
                 if bool[i*5+j] == 1:       
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=12, height=2,bg="green",command=lambda x=button_name:add_delete(x))
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#00DD00",command=lambda x=button_name:add_delete(x),activebackground="#00DD00")
                 else:
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=12, height=2,bg="red",command=lambda x =button_name:add_delete(x))
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#BB0000",command=lambda x =button_name:add_delete(x),activebackground="#BB0000")
                 buttons[button_name].place(x=j*100+180,y=i*60+200)
         
         def add_delete(name):
@@ -348,7 +350,7 @@ class Application_Interface:
                 cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,1235,))
                 con.commit()
                 bool[x] = 1
-                buttons[name].config(bg="green")
+                buttons[name].config(bg="#00DD00",activebackground="#00DD00")
                 day=days[int(name[0])]
                 start_time=fr[int(name[1])]
                 end_time=to[int(name[1])]
@@ -358,7 +360,7 @@ class Application_Interface:
                 cur.execute("DELETE FROM Students_table WHERE Name=?",(name,))
                 con.commit()
                 bool[x] = 0
-                buttons[name].config(bg="red")
+                buttons[name].config(bg="#BB0000",activebackground="#BB0000")
 
     def Admin_Page(self):
 
