@@ -4,6 +4,11 @@ from tkinter import messagebox
 import tkinter.ttk as tk
 import time
 import sqlite3
+import random
+import subprocess
+import shlex
+
+
 
 s = serial.Serial('COM3',9600)
 global MAX_NUMBER
@@ -230,12 +235,141 @@ class Application_Interface:
 
 
 
+
+        
+
+
+
+
+    def Table(self):
+    
+        root = Toplevel()
+
+
+        def disable_event(): # close window
+            self.opened = False
+
+
+        def back(): # back button
+            root.destroy()
+            self.Admin_Page()
+
+
+        root.protocol("WM_DELETE_WINDOW", disable_event)
+        root.title("Smart Classroom")
+        root.geometry("800x650+250+50")
+        root.resizable(False,False)
+        root.iconbitmap("icons\lamp.ico")
+
+
+
+
+        def create_task(start_time,day,end_time=None):
+            task_name = random.randint(1,1000000)
+            exe_path = r"E:\mohamed\FCI\last term\finished\network\NP Task\Client\Client\bin\Debug\Client.exe"
+            quoted_exe_path = shlex.quote(exe_path)
+
+            command = f'schtasks /create /tn "{task_name}" /tr "{quoted_exe_path}" /sc weekly /st 17:21 /d {day} /f'
+
+            if end_time is not None:
+                command += f' /et {end_time}'
+            print(command)
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            if result.returncode == 0:
+                print(f"Task '{task_name}' created successfully!")
+            else:
+                print("Failed to create the task.")
+                print(result.stderr)
+
+            # Example usage
+            
+            # create_task(task_name, exe_path, start_time,end_time)
+
+
+        back_button=Button(root,text="Back",width=15, padx=7, command=back,pady=5, bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+        back_button.place(x=50,y=50)
+        
+        sat = Label(root,text="Sat",font=("Arial",15))
+        sun = Label(root,text="Sun",font=("Arial",15))
+        mon = Label(root,text="Mon",font=("Arial",15))
+        tue = Label(root,text="Tue",font=("Arial",15))
+        wen = Label(root,text="Wed",font=("Arial",15))
+        thu = Label(root,text="Thu",font=("Arial",15))
+        fri = Label(root,text="Fri",font=("Arial",15))
+
+        
+        sat.place(x=100,y=200)
+        sun.place(x=100,y=260)
+        mon.place(x=100,y=320)
+        tue.place(x=100,y=380)
+        wen.place(x=100,y=440)
+        thu.place(x=100,y=500)
+        fri.place(x=100,y=560)
+        
+        
+        f8t10 =Label(root,text="8-10",font=("calibre",15))
+        f10t12 =Label(root,text="10-12",font=("calibre",15))
+        f12t2 =Label(root,text="12-02",font=("calibre",15))
+        f2t4 =Label(root,text="02-04",font=("calibre",15))
+        f4t6 =Label(root,text="04-06",font=("calibre",15))
+        
+        f8t10.place(x=200,y=150)
+        f10t12.place(x=300,y=150)
+        f12t2.place(x=400,y=150)
+        f2t4.place(x=500,y=150)
+        f4t6.place(x=600,y=150)
+
+        days = ["SAT", "SUN","MON", "TUE", "WED", "THU", "FRI" ]
+        fr=["08:00","10:00","12:00","02:00","04:00"]
+        to=["10:00","12:00","02:00","04:00","06:00"]
+        buttons = {}
+        bool = [0 for _ in range(35)]
+        self.cr.execute("SELECT * FROM Students_table")
+        result = self.cr.fetchall()
+        for i in result:
+                x = (int(i[0][0])*5+int(i[0][1]))
+                bool[x] = 1
+        # create 35 buttons and store them in the dictionary with unique variable names
+        for i in range(7):
+            for j in range(5):
+                button_name = f"{i}{j}"
+                if bool[i*5+j] == 1:       
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=12, height=2,bg="green",command=lambda x=button_name:add_delete(x))
+                else:
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=12, height=2,bg="red",command=lambda x =button_name:add_delete(x))
+                buttons[button_name].place(x=j*100+180,y=i*60+200)
+        
+        def add_delete(name):
+            con = sqlite3.connect("Database.db")
+            cur = con.cursor()
+            x = (int(name[0])*5+int(name[1]))
+            
+            if bool[x] == 0:
+                cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,1235,))
+                con.commit()
+                bool[x] = 1
+                buttons[name].config(bg="green")
+                day=days[int(name[0])]
+                start_time=fr[int(name[1])]
+                end_time=to[int(name[1])]
+                create_task(start_time,day)
+
+            else:
+                cur.execute("DELETE FROM Students_table WHERE Name=?",(name,))
+                con.commit()
+                bool[x] = 0
+                buttons[name].config(bg="red")
+
     def Admin_Page(self):
 
       
         def call_page(): # More Options
             root.withdraw()
             self.Options_page()
+        
+        def modify_table(): # More Options
+            root.withdraw()
+            self.Table()
     
 
 
@@ -288,6 +422,8 @@ class Application_Interface:
         namee= Entry(root, width=22,font=("bold",15),state=DISABLED)
         line = Label(root,fg="black",text="___________________________________________________________________________________________________________________________________________________________________",font=("Arial",20))
         More_option=Button(root,text="More options",width=20, padx=7, command=call_page,pady=5, bg="#B33030", fg="white", font=('calibre', 12, 'bold'))
+        table=Button(root,text="Modify study schedule",width=20, padx=7, command=modify_table,pady=5, bg="#B33030", fg="white", font=('calibre', 12, 'bold'))
+
         value = StringVar()
         combo = tk.Combobox(root,value=update_users(),state='readonly',textvariable=value,font=('calibre', 10, 'bold'))
         combo.bind("<<ComboboxSelected>>",show_data)      
@@ -302,8 +438,8 @@ class Application_Interface:
         usere.place(x=330,y=340,height=28)
         passe.place(x=330,y=400,height=28)
         line.place(x=0,y=450)
-        More_option.place(x=250,y=580)
-        
+        More_option.place(x=100,y=580)
+        table.place(x=450,y=580)
         mainloop()
 
 
@@ -695,4 +831,4 @@ def getfan():
     return fans
 
 app = Application_Interface()
-#app.run()
+# app.run()
