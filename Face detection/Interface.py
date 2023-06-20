@@ -257,7 +257,7 @@ class Application_Interface:
 
         root.protocol("WM_DELETE_WINDOW", disable_event)
         root.title("Smart Classroom")
-        root.geometry("800x650+250+50")
+        root.geometry("850x650+250+50")
         root.resizable(False,False)
         root.iconbitmap("icons\lamp.ico")
 
@@ -311,6 +311,7 @@ class Application_Interface:
             
         def data(name):
             x = (int(name[0])*5+int(name[1]))
+
             if bool[x] == 0:    
                 root2 = Toplevel()
                 root2.protocol("WM_DELETE_WINDOW", lambda:root2.destroy())
@@ -319,10 +320,12 @@ class Application_Interface:
                 root2.resizable(False,False)
                 root2.iconbitmap("icons\lamp.ico")
                 value = StringVar()
+                doctor = Label(root2,text="Select doctor name",font=('calibre', 15, 'bold'),fg="#2AAAFF")
+                doctor.place(x=100,y=100)
                 combo = tk.Combobox(root2,value=update_users(),state='readonly',textvariable=value,font=('calibre', 10, 'bold'))
-                combo.pack()
+                combo.place(x=120,y=200)
                 confirm=Button(root2,text="Confirm",width=15, padx=7, command=lambda x=name:add_delete(x,str(combo.get()),root2), pady=5, activebackground="#B33030", activeforeground="white" ,bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
-                confirm.pack()
+                confirm.place(x=130,y=250)
                 # combo.bind("<<ComboboxSelected>>",show_data)      
             else:
                 add_delete(name)
@@ -357,47 +360,55 @@ class Application_Interface:
         f4t6 =Label(root,text="4-6",font=("calibre",15))
         
         f8t10.place(x=200,y=150)
-        f10t12.place(x=300,y=150)
-        f12t2.place(x=400,y=150)
-        f2t4.place(x=500,y=150)
-        f4t6.place(x=600,y=150)
-
+        f10t12.place(x=320,y=150)
+        f12t2.place(x=440,y=150)
+        f2t4.place(x=560,y=150)
+        f4t6.place(x=680,y=150)
+        names = ["" for _ in range(35)]
         days = ["SAT", "SUN","MON", "TUE", "WED", "THU", "FRI" ]
         fr=["08:00","10:00","12:00","02:00","04:00"]
         to=["10:00","12:00","02:00","04:00","06:00"]
         buttons = {}
         bool = [0 for _ in range(35)]
-        self.cr.execute("SELECT * FROM Students_table")
+        self.cr.execute("SELECT Name,doctorName FROM Students_table")
         result = self.cr.fetchall()
         for i in result:
                 x = (int(i[0][0])*5+int(i[0][1]))
                 bool[x] = 1
+                names[x]= i[1]
+        
+        
         # create 35 buttons and store them in the dictionary with unique variable names
         for i in range(7):
             for j in range(5):
                 button_name = f"{i}{j}"
                 if bool[i*5+j] == 1:       #command=lambda x=button_name:add_delete(x)
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#00DD00", command=lambda x=button_name:data(x), activebackground="#00DD00")
+                    buttons[button_name] = Button(root, text=names[i*5+j],width=16, height=2,bg="#00DD00", command=lambda x=button_name:data(x), activebackground="#00DD00")
                 else:
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#BB0000",command=lambda x=button_name:data(x),activebackground="#BB0000")
-                buttons[button_name].place(x=j*100+180,y=i*60+200)
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=16, height=2,bg="#BB0000",command=lambda x=button_name:data(x),activebackground="#BB0000")
+                buttons[button_name].place(x=j*120+180,y=i*60+200)
         
         def add_delete(name, Doctor="Empty", root2=None):
             if root2 != None:
                 root2.destroy()
+            if Doctor=="":
+                Doctor="Others"
             con = sqlite3.connect("Database.db")
+
+
             cur = con.cursor()
             x = (int(name[0])*5+int(name[1]))
             task_name=random.randint(1,1000000)
+
             if bool[x] == 0:
-                cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,task_name,))
-                con.commit()
-                bool[x] = 1
-                buttons[name].config(bg="#00DD00",activebackground="#00DD00",text=Doctor)
-                day=days[int(name[0])]
-                start_time=fr[int(name[1])]
-                end_time=to[int(name[1])]
-                create_task(start_time,day,end_time,task_name)
+                    cur.execute("INSERT INTO Students_table VALUES (?,?,?)",(name,task_name,Doctor,))
+                    con.commit()
+                    bool[x] = 1
+                    buttons[name].config(bg="#00DD00",activebackground="#00DD00",text=Doctor)
+                    day=days[int(name[0])]
+                    start_time=fr[int(name[1])]
+                    end_time=to[int(name[1])]
+                    create_task(start_time,day,end_time,task_name)
 
             else:
 
@@ -462,7 +473,7 @@ class Application_Interface:
         
 
         def update_users(): # Update Users in combo box 
-            self.cr.execute("SELECT name FROM users")
+            self.cr.execute("SELECT name FROM users WHERE name != 'Others' ")
             result = self.cr.fetchall()
             lst = []
             for i in result:
