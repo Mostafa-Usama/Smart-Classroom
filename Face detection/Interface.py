@@ -379,6 +379,7 @@ class Application_Interface:
 
                 bool[x] = 0
                 buttons[name].config(bg="#BB0000",activebackground="#BB0000")
+<<<<<<< HEAD
 
                 
                 if taskName:
@@ -388,6 +389,8 @@ class Application_Interface:
                 
                 delete_task(taskName[0])
 
+=======
+>>>>>>> 6e1ab6800d2e3695d4fcbf32b0a820398a9ce8e8
 
     def Admin_Page(self):
 
