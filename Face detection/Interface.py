@@ -264,12 +264,12 @@ class Application_Interface:
 
 
 
-        def create_task(start_time,day,end_time=None):
-            task_name = random.randint(1,1000000)
+        def create_task(start_time,day,end_time,task_name):
+            
             exe_path = r"E:\mohamed\FCI\last term\finished\network\NP Task\Client\Client\bin\Debug\Client.exe"
             quoted_exe_path = shlex.quote(exe_path)
 
-            command = f'schtasks /create /tn "{task_name}" /tr "{quoted_exe_path}" /sc weekly /st 17:21 /d {day} /f'
+            command = f'schtasks /create /tn "{task_name}" /tr "{quoted_exe_path}" /sc weekly /st {start_time} /d {day} /f'
 
             if end_time is not None:
                 command += f' /et {end_time}'
@@ -280,6 +280,19 @@ class Application_Interface:
             # else:
             #     print("Failed to create the task.")
             #     print(result.stderr)
+
+        def delete_task(task_name):
+            
+            command = f'schtasks /delete /tn "{task_name}" /f'
+
+            print(command)
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            if result.returncode == 0:
+                print(f"Task '{task_name}' deleted successfully!")
+            else:
+                print("Failed to delete the task.")
+                print(result.stderr)
+
 
             # Example usage
             
@@ -375,22 +388,36 @@ class Application_Interface:
             con = sqlite3.connect("Database.db")
             cur = con.cursor()
             x = (int(name[0])*5+int(name[1]))
-            
+            task_name=random.randint(1,1000000)
             if bool[x] == 0:
-                cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,1235,))
+                cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,task_name,))
                 con.commit()
                 bool[x] = 1
                 buttons[name].config(bg="#00DD00",activebackground="#00DD00",text=Doctor)
                 day=days[int(name[0])]
                 start_time=fr[int(name[1])]
                 end_time=to[int(name[1])]
-                create_task(start_time,day)
+                create_task(start_time,day,end_time,task_name)
 
             else:
+
+                cur.execute("SELECT taskName FROM Students_table WHERE Name=?", (name,))
+                taskName = cur.fetchone()
+
                 cur.execute("DELETE FROM Students_table WHERE Name=?",(name,))
                 con.commit()
+
                 bool[x] = 0
                 buttons[name].config(bg="#BB0000",activebackground="#BB0000",text=Doctor)
+
+                
+                if taskName:
+                    print("task selected!")
+                else:
+                    print("task does not select")
+                
+                delete_task(taskName[0])
+
 
     def Admin_Page(self):
 
