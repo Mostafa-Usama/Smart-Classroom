@@ -274,12 +274,12 @@ class Application_Interface:
             if end_time is not None:
                 command += f' /et {end_time}'
             print(command)
-            # result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            # if result.returncode == 0:
-            #     print(f"Task '{task_name}' created successfully!")
-            # else:
-            #     print("Failed to create the task.")
-            #     print(result.stderr)
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            if result.returncode == 0:
+                print(f"Task '{task_name}' created successfully!")
+            else:
+                print("Failed to create the task.")
+                print(result.stderr)
 
         def delete_task(task_name):
             
@@ -890,4 +890,4 @@ def getfan():
     return fans
 
 app = Application_Interface()
-# app.run()
+app.run()
