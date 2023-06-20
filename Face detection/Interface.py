@@ -274,12 +274,12 @@ class Application_Interface:
             if end_time is not None:
                 command += f' /et {end_time}'
             print(command)
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            if result.returncode == 0:
-                print(f"Task '{task_name}' created successfully!")
-            else:
-                print("Failed to create the task.")
-                print(result.stderr)
+            # result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            # if result.returncode == 0:
+            #     print(f"Task '{task_name}' created successfully!")
+            # else:
+            #     print("Failed to create the task.")
+            #     print(result.stderr)
 
         def delete_task(task_name):
             
@@ -298,6 +298,34 @@ class Application_Interface:
             
             # create_task(task_name, exe_path, start_time,end_time)
 
+
+        
+        def update_users(): # Update Users in combo box 
+            self.cr.execute("SELECT name FROM users")
+            result = self.cr.fetchall()
+            lst = []
+            for i in result:
+                lst.append(i[0])
+            return lst
+
+            
+        def data(name):
+            x = (int(name[0])*5+int(name[1]))
+            if bool[x] == 0:    
+                root2 = Toplevel()
+                root2.protocol("WM_DELETE_WINDOW", lambda:root2.destroy())
+                root2.title("Smart Classroom")
+                root2.geometry("400x400+250+50")
+                root2.resizable(False,False)
+                root2.iconbitmap("icons\lamp.ico")
+                value = StringVar()
+                combo = tk.Combobox(root2,value=update_users(),state='readonly',textvariable=value,font=('calibre', 10, 'bold'))
+                combo.pack()
+                confirm=Button(root2,text="Confirm",width=15, padx=7, command=lambda x=name:add_delete(x,str(combo.get()),root2), pady=5, activebackground="#B33030", activeforeground="white" ,bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
+                confirm.pack()
+                # combo.bind("<<ComboboxSelected>>",show_data)      
+            else:
+                add_delete(name)
 
         back_button=Button(root,text="Back",width=15, padx=7, command=back,pady=5, activebackground="#B33030", activeforeground="white" ,bg="#B33030", fg="white", font=('calibre', 10, 'bold'))
         back_button.place(x=50,y=50)
@@ -348,13 +376,15 @@ class Application_Interface:
         for i in range(7):
             for j in range(5):
                 button_name = f"{i}{j}"
-                if bool[i*5+j] == 1:       
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#00DD00",command=lambda x=button_name:add_delete(x),activebackground="#00DD00")
+                if bool[i*5+j] == 1:       #command=lambda x=button_name:add_delete(x)
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#00DD00", command=lambda x=button_name:data(x), activebackground="#00DD00")
                 else:
-                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#BB0000",command=lambda x =button_name:add_delete(x),activebackground="#BB0000")
+                    buttons[button_name] = Button(root, text=f"Button {i} {j}",width=13, height=2,bg="#BB0000",command=lambda x=button_name:data(x),activebackground="#BB0000")
                 buttons[button_name].place(x=j*100+180,y=i*60+200)
         
-        def add_delete(name):
+        def add_delete(name, Doctor="Empty", root2=None):
+            if root2 != None:
+                root2.destroy()
             con = sqlite3.connect("Database.db")
             cur = con.cursor()
             x = (int(name[0])*5+int(name[1]))
@@ -363,7 +393,7 @@ class Application_Interface:
                 cur.execute("INSERT INTO Students_table VALUES (?,?)",(name,task_name,))
                 con.commit()
                 bool[x] = 1
-                buttons[name].config(bg="#00DD00",activebackground="#00DD00")
+                buttons[name].config(bg="#00DD00",activebackground="#00DD00",text=Doctor)
                 day=days[int(name[0])]
                 start_time=fr[int(name[1])]
                 end_time=to[int(name[1])]
@@ -378,7 +408,7 @@ class Application_Interface:
                 con.commit()
 
                 bool[x] = 0
-                buttons[name].config(bg="#BB0000",activebackground="#BB0000")
+                buttons[name].config(bg="#BB0000",activebackground="#BB0000",text=Doctor)
 
                 
                 if taskName:
