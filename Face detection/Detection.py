@@ -1,6 +1,6 @@
 import cv2
 from tkinter import * 
-from Interface import s,getfan,getMode,getMax,getTemp, Application_Interface
+from Interface import lst,s,getfan,getMode,getMax,getTemp, Application_Interface
 import _thread
 from Graph_Head import FROZEN_GRAPH_HEAD
 import time
@@ -17,13 +17,11 @@ app = Application_Interface()
 thread = _thread.start_new_thread(app.run,())
 
 
-PATH_TO_CKPT_HEAD = 'models/HEAD_DETECTION_300x300_ssd_mobilenetv2.pb'
 
 
-source = 'test.mp4'
 
 
-tDetector = FROZEN_GRAPH_HEAD(PATH_TO_CKPT_HEAD)
+tDetector = FROZEN_GRAPH_HEAD()
 #cap = cv2.VideoCapture(source)
 
 while app.opened:
@@ -34,15 +32,16 @@ while app.opened:
             temp=getTemp()
             Max_Number = getMax()
             auto = getMode()  
-            image = cv2.imread("Test/10.jpg")
+            path="Test/10.jpg"
+            boxes = cv2.imread(path)
             #ret, image = cap.read()
             # if ret == 0:
             #     break
 
-            im_height, im_width, im_channel = image.shape
-            image = cv2.flip(image, 1)
+            im_height, im_width, im_channel = boxes.shape
+            
 
-            boxes, scores, top_left, top_right, bottom_left, bottom_right = tDetector.run(image,im_width,im_height)
+            image,top_left, top_right, bottom_left, bottom_right = tDetector.run(boxes,path,im_width,im_height)
             cv2.imshow("HEAD DETECTION USING FROZEN GRAPH", image)
 
             k = cv2.waitKey(1) & 0xff
@@ -62,48 +61,72 @@ while app.opened:
             if top_left >= Max_Number:
                 if getfan():#and 0 >= Max_Number: 
                     fe = '1'
+                    lst[0]=False
+                    lst[1]=False
                     s.write(fe.encode('utf-8'))
                 else:
                     fe = 'w'
+                    lst[0]=False
+                    lst[1]=True
                     s.write(fe.encode('utf-8'))
             else:
+                lst[0]=True
+                lst[1]=True
                 fe = '5'
                 s.write(fe.encode('utf-8'))
 
 
             if top_right >= Max_Number: #and 0 < Max_Number:
                 if getfan():#and 0 >= Max_Number:
+                    lst[2]=False
+                    lst[3]=False
                     fe = '2'
                     s.write(fe.encode('utf-8'))
                 else:
+                    lst[2]=False
+                    lst[3]=True
                     fe = 'x'
                     s.write(fe.encode('utf-8'))
 
             else:
+                lst[2]=True
+                lst[3]=True
                 fe = '6'
                 s.write(fe.encode('utf-8'))
 
 
             if  bottom_left >= Max_Number: #and 0 >= Max_Number:
                 if getfan():#and 0 >= Max_Number:
+                    lst[4]=False
+                    lst[5]=False
                     fe = '3'
                     s.write(fe.encode('utf-8'))
                 else:
+                    lst[4]=False
+                    lst[5]=True
                     fe = 'y'
                     s.write(fe.encode('utf-8'))
 
             else:
+                lst[4]=True
+                lst[5]=True
                 fe = '7'
                 s.write(fe.encode('utf-8'))
 
             if bottom_right >= Max_Number:
                 if getfan():#and 0 >= Max_Number:
+                    lst[6]=False
+                    lst[7]=False
                     fe = '4'
                     s.write(fe.encode('utf-8'))
                 else:
+                    lst[6]=False
+                    lst[7]=True
                     fe = 'z'
                     s.write(fe.encode('utf-8'))
             else:
+                lst[6]=True
+                lst[7]=True
                 fe = '8'
                 s.write(fe.encode('utf-8'))
 
