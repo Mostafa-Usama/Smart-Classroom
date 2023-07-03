@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import numpy as np
 import cv2
 
-model = YOLO("best.pt" , 'v8')
+model = YOLO("models\\best.pt" , 'v8')
 class FROZEN_GRAPH_HEAD():
 
         
