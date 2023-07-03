@@ -1,0 +1,434 @@
+/* Reset default margin and padding */
+body, h1, h2, h3, h4, h5, h6, p, img {
+	margin: 0;
+	padding: 0;
+  }
+
+  html {
+	scroll-behavior: smooth;
+  }
+  
+  /* Global styles */
+  body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #ffffff;
+  }
+  
+  .grid-cont{
+	display: grid;
+	grid-template-areas:
+	"navgition"
+	"home"
+	"about"
+	"tools"
+	"questions"
+	"contacts"
+	"info"
+	;
+	grid-gap: 0px;
+	}
+  
+  /* Navigation */
+  .navgition {
+	grid-area: navgition;
+	top: 0;
+	position: fixed;
+	background-color: #f7f6f4;
+	z-index: 100000;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	animation: fade-in 1s ease;
+	border-bottom: 1px solid #5b483a;
+  }
+  
+  .navgition a {
+	position: relative;
+	color: #4C6600;
+	text-decoration: none;
+	font-size: large;
+	font-weight: bold;
+	transition: color 0.3s ease;
+	margin: 0 20px;
+	font-family: "Play";
+	font-weight: 700;
+  }
+  
+  .navgition a:hover {
+	color: #D81415;
+	scale: 1.08;
+  }
+  
+  .logo {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin: 0 20px;
+  }
+  
+  .logo img {
+	padding: 10px;
+	width: 80px;
+	height: 50px;
+  }
+  
+  /* Home section */
+  .home {
+	grid-area: home;
+	height: 600px;
+	background-size: cover;
+	background-position: center;
+	background-image: url(final1.jpg);
+	background-color: #f9f9f9;
+	padding: 100px 0;
+	animation: slide-up 1s ease;
+	display: block;
+	align-items: center;
+  }
+
+ 
+  
+  .home h2 {
+	padding: 220px 50px;
+	font-size: 40px;
+	color: #b7b1ac;
+	font-family: "Bacasime+Antique";
+  }
+  
+  .home h5 {
+	text-align: center;
+	font-size: 30px;
+	color: #b7b1ac;
+	padding-top: 10px;
+	font-family: "Playfair+Display";
+  }
+  
+  /* About section */
+  .about {
+	grid-area: about;
+	background-color: #4c433d;
+	padding: 20px;
+	animation: fade-in 1s ease;
+	height: 400px;
+	display: block;
+	overflow: scroll;
+  }
+  .about h2{
+	color: #e9dfd8;
+	font-size: 35px;
+	padding-left: 150px;
+	padding-top: 72px;
+	font-family: "Bacasime+Antique";
+  }
+  .about p {
+	font-size: large;
+	text-align: justify;
+	padding: 50px 150px;
+	color: #b7b1ac;
+	font-family: "Alegreya";
+	font-size: 22px;
+  }
+  
+
+
+  /* Tools section */
+  .tools {
+	height: 350px;
+	grid-area: tools;
+	background-color:#f7f6f4;
+	padding: 20px;
+	animation: slide-up 1s ease;
+	display: block;
+	justify-content: space-between;
+	align-items: center;
+	
+  }
+
+  .tools h2 {
+	display: block;
+	text-align: center;
+	padding-top: 30px;
+	color: #4C6600;
+	font-size: 35px;
+	font-family: "Bacasime+Antique";
+  }
+
+
+  .tools img {
+	align-items: center;
+	display: inline-block;
+	padding: 70px 85px;
+	margin: 0 10px;
+	width: 100px;
+	height: 100px;
+  }
+
+
+
+  /* Questions section */
+  .questions {
+	height: 600px;
+	grid-area: questions;
+	background-color: #4c433d;
+	padding: 20px;
+	animation: fade-in 1s ease-in-out forwards;
+	display: inline;
+	justify-content: space-between;
+	align-items: center;
+	overflow: scroll;
+	/*background-image: url(final3.jpg);*/
+	background-repeat: no-repeat;
+	background-size: 800px 650px;
+	background-position:  right;
+	
+  }
+
+  .left
+  {
+	width: 600px;
+  }
+  
+  .questions h2 {
+	color: #9eb35e;
+	font-size: 35px;
+	padding-left: 92px;
+	padding-top: 32px;
+	font-family: "Bacasime+Antique";
+  }
+
+  .question {
+	margin-bottom: 20px;
+	padding-left: 92px;
+	padding-top: 32px;
+  }
+  
+  .question-type {
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: #e9dfd8;
+	font-size: 20px;
+	font-family: "Martian Mono";
+  }
+  
+  .answer {
+	color: #9eb35e;
+	font-size: 20px;
+	display: none;
+	opacity: 0;
+	font-family: "Alegreya";
+  }
+  
+
+
+  /* Contacts section */
+  .contacts {
+	grid-area: contacts;
+	background-color: #f7f6f4;
+	padding: 10px;
+	animation: slide-up 1s ease-in-out forwards;
+	font-family: "Bacasime+Antique";
+	height: 550px;
+  }
+
+  .contacts h2{
+	color: #4C6600;
+	font-size: 35px;
+	padding-top: 52px;
+	padding-left: 150px;
+	font-family: "Bacasime+Antique";
+  }
+
+  .person {
+	padding-left: 250px;
+	padding-top: 35px;
+	width: 30%;
+	height: 100px;
+	float: left;
+  }
+  
+  .name {
+	font-weight: bold;
+	margin-bottom: 5px;
+	color: #4c433d;
+	font-size: 20px;
+	font-family: "Martian Mono";
+  }
+  
+  .link a{
+	color: #4c433d;
+	font-size: 20px;
+	text-decoration: none;
+	font-family: "Alegreya";
+  }
+
+  .link a:hover{
+	color: #A48F8A;
+  }
+
+
+  
+  /* Info section */
+  .info {
+	grid-area: info;
+	background-color: #4c433d;
+	padding: 10px;
+	text-align: center;
+	animation: slide-up 1s ease-in-out forwards;
+  }
+  
+  .info h2 {
+	color: #e9dfd8;
+	padding-top: 30px;
+	margin-bottom: 10px;
+	font-size: 35px;
+	font-family: "Bacasime+Antique";
+  }
+
+
+
+
+
+/* Add animation to questions */
+.question:hover .answer {
+	animation: slide-up 1s ease-in-out forwards;
+	display:inline-block;
+}
+
+
+
+  /* Animations */
+  @keyframes fade-in {
+	from {
+	  opacity: 0;
+	}
+	to {
+	  opacity: 1;
+	}
+  }
+  
+  @keyframes slide-up {
+	from {
+	  transform: translateY(50px);
+	  opacity: 0;
+	}
+	to {
+	  transform: translateY(0);
+	  opacity: 1;
+	}
+  }  
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 900px) {
+	.container {
+	  padding: 10px;
+	}
+	
+	.logo img {
+	  width: 120px;
+	  height: 70px;
+	}
+	
+	.home h3 {
+	  font-size: 24px;
+	}
+	
+	.home h5 {
+	  font-size: 16px;
+	}
+	
+	.tools img {
+	  width: 100px;
+	  height: 100px;
+	}
+
+	.questions {
+		background-color: #4c433d;
+	}
+
+	.tools {
+		height: 1000px;
+		background-color:#f7f6f4;
+		animation: slide-up 1s ease;
+		display: block;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.navgition {
+		flex-direction: column;
+		align-items: flex-start;
+	  }
+	
+	.navgition a {
+		margin: 10px 20px;
+	  }
+	
+	  .tools img {
+		padding-left: 185px;
+		display: block;
+		width: 50px;
+		height: 50px;
+	  }
+
+	  .person {
+		width: 100%;
+		padding-left: 0;
+		padding-top: 10px;
+		height: auto;
+	  }
+	
+  }
+  @media (min-width: 1000px) {
+	.questions {
+		
+		background-image: url(final3.jpg);
+		background-repeat: no-repeat;
+		background-size: 800px 650px;
+		background-position:  right;
+	  }
+	
+  }
+  
+  
+
+  /* Styling the vertical scrollbar track */
+::-webkit-scrollbar {
+	width: 12px; /* Adjust the width as desired */
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: #6b6158; /* Background color of the track */
+  }
+  
+  /* Styling the vertical scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+	background: #b7b1ac; /* Color of the thumb */
+	border-radius: 8px; /* Border radius of the thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+	background: #493527; /* Color of the thumb on hover */
+
+  }
+  .questions::-webkit-scrollbar {
+	width: 0px;
+	height: 0px; /* Adjust the width as desired */
+  }
+  .about::-webkit-scrollbar {
+	width: 0px;
+	height: 0px; /* Adjust the width as desired */
+  }
+  

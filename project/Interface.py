@@ -368,8 +368,8 @@ class Application_Interface:
         f4t6.place(x=680, y=150)
         names = ["" for _ in range(35)]
         days = ["SAT", "SUN", "MON", "TUE", "WED", "THU", "FRI"]
-        fr = ["08:00", "10:00", "12:00", "02:00", "04:00"]
-        to = ["10:00", "12:00", "02:00", "04:00", "06:00"]
+        fr = ["08:00", "10:00", "12:00", "14:00", "16:00"]
+        to = ["10:00", "12:00", "14:00", "16:00", "18:00"]
         buttons = {}
         bool = [0 for _ in range(35)]
         self.cr.execute("SELECT Name,doctorName FROM Students_table")
@@ -389,7 +389,7 @@ class Application_Interface:
                                                   bg="#00DD00", command=lambda x=button_name: data(x), activebackground="#00DD00")
                 else:
                     buttons[button_name] = Button(
-                        root, text=f"Button {i} {j}", width=16, height=2, bg="#BB0000", command=lambda x=button_name: data(x), activebackground="#BB0000")
+                        root, text=f"Empty", width=16, height=2, bg="#BB0000", command=lambda x=button_name: data(x), activebackground="#BB0000")
                 buttons[button_name].place(x=j*120+180, y=i*60+200)
 
         def add_delete(name, Doctor="Empty", root2=None):
