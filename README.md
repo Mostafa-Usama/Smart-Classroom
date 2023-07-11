@@ -15,14 +15,8 @@ Smart Classroom
 ## Project Description
   - Overview
     
-    - The smart classroom system is a new product that manages electrical devices in the 
-    classroom by collecting and processing data from sensors and cameras to control  
-    lighting, air conditioning, and more. The system aims to increase efficiency and reduce 
-    energy waste.
-    As previously mentioned, this system works to reduce energy consumption through 
-    various processes. This will be achieved through some of its features, such as 
-    automatic operation. The system will automatically turn on and off at the scheduled 
-    start and end times of lectures each week, without human intervention.
+    - The smart classroom system is a new self-contained product which will be produced in order to overcome the problem of wasting energy.
+    - The classroom system manages the electrical devices in the classroom by collecting data from sensors and cameras, then processing this data, taking action, and finally sending orders to the lighting system, air conditioning, and more.
 
   - Features of the project
     
@@ -51,14 +45,36 @@ Smart Classroom
 - install SQLite
 - install these libraries
   - OpenCV: `pip install opencv-python`
-  - Tkinter: Tkinter is a built-in Python library, so you don't need to install it separately.
   - NumPy: `pip install numpy`
   - Ultralytics: `pip install ultralytics`
-  
+  - serial: `pip install pyserial`
 
 Once you have installed these libraries and programs, you should be able to run the project without any issues.
 
 ## How to Use the Project
+
+- First, you need to set up VSPE.
+  
+  - To do that, you will open VSPE which will look something like this
+
+<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110331.png height=400 width=500>
+
+  - Second, you will create a new virtual port
+
+<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110405.png height=400 width=500>
+
+  - Click next
+
+<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110433.png height=400 width=500>
+
+  - Make sure you choose COM3 for the virtual port
+
+<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110452.png height=400 width=500>   
+
+- Second, make sure you have all the libraries installed 
+
+- If you successfuly managed to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
+  - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
 
 ## Tools
 
