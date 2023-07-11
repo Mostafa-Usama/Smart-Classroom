@@ -72,7 +72,7 @@ Smart Classroom
 
 - after making sure you have all the libraries installed, you should be able to run the project without any issues. 
 
-- If you successfuly managed to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
+- If you successfuly manage to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
   - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
 
 ## Tools
