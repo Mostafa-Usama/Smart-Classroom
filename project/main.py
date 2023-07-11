@@ -32,7 +32,7 @@ while app.opened:
             temp=getTemp()
             Max_Number = getMax()
             auto = getMode()  
-            path="Test/10.jpg"
+            path="Test/test.jpg"
             boxes = cv2.imread(path)
             #ret, image = cap.read()
             # if ret == 0:
@@ -135,7 +135,7 @@ while app.opened:
             for i in range(100):
                 if not app.opened:
                     break
-                #time.sleep(0.1)
+                time.sleep(0.01)
             #cap.release()
 
             #cv2.destroyAllWindows()

@@ -44,7 +44,7 @@ class FROZEN_GRAPH_HEAD():
             elif mid_width >= im_width/2 and mid_height >= im_height /2:
                 br +=1
 
-            cv2.rectangle(image, (left, top), (right, bottom), (255, 0, 0), 2, 8)
+            cv2.rectangle(image, (left+3, top+7), (right-3, bottom-8), (255, 0, 0), 2, 8)
             cv2.line(image, (im_width//2, 0), (im_width//2, im_height), (0, 255, 0), 2)                
             cv2.line(image, (0, im_height//2), (im_width, im_height//2), (0, 255, 0), 2)                
 
