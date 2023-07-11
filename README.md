@@ -24,9 +24,9 @@ Smart Classroom
     automatic operation. The system will automatically turn on and off at the scheduled 
     start and end times of lectures each week, without human intervention.
 
-  - Organization of project
+  - Features of the project
     
-    - Study schedule based on it, the system will operate automatically at the start of 
+    - Create a study schedule that will make the system operate automatically at the start of 
     each lecture and stop at its end, achieving the desired goal of the system, which is to conserve energy.
     - Count the number of people in a specific section of the classroom.
     - Control the lighting in a specific space based on the number of people in that space and turn it off when not in use.
@@ -53,11 +53,8 @@ Smart Classroom
   - OpenCV: `pip install opencv-python`
   - Tkinter: Tkinter is a built-in Python library, so you don't need to install it separately.
   - NumPy: `pip install numpy`
-  - Ultralytics: `pip install yolov5[torch] ultralytics`
+  - Ultralytics: `pip install ultralytics`
   
-  Note that to install Ultralytics, you also need to install PyTorch. If you don't have PyTorch installed, you can use the following command to install it:
-  
-  - PyTorch: `pip install torch torchvision`
 
 Once you have installed these libraries and programs, you should be able to run the project without any issues.
 
