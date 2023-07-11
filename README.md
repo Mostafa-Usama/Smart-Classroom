@@ -49,13 +49,12 @@ Smart Classroom
   - Ultralytics: `pip install ultralytics`
   - serial: `pip install pyserial`
 
-Once you have installed these libraries and programs, you should be able to run the project without any issues.
 
 ## How to Use the Project
 
 - First, you need to set up VSPE.
   
-  - To do that, you will open VSPE which will look something like this
+  - To do that, you will first open VSPE which will look something like this
 
 <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110331.png height=400 width=500>
 
@@ -71,7 +70,7 @@ Once you have installed these libraries and programs, you should be able to run 
 
 <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110452.png height=400 width=500>   
 
-- Second, make sure you have all the libraries installed 
+- after making sure you have all the libraries installed, you should be able to run the project without any issues. 
 
 - If you successfuly managed to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
   - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
