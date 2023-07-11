@@ -57,19 +57,19 @@
   
   - To do that, you will first open VSPE which will look something like this
 
-<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110331.png height=400 width=500>
+ <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110331.png height=400 width=500></p>
 
   - Second, you will create a new virtual port
 
-<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110405.png height=400 width=500>
+ <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110405.png height=400 width=500></p>
 
   - Click next
 
-<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110433.png height=400 width=500>
+ <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110433.png height=400 width=500></p>
 
   - Make sure you choose COM3 for the virtual port
 
-<img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110452.png height=400 width=500>   
+ <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-11%20110452.png height=400 width=500></p>   
 
 - after making sure you have all the libraries installed, you should be able to run the project without any issues. 
 
