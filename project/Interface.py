@@ -533,7 +533,7 @@ class Application_Interface:
         root.attributes('-fullscreen', True)
 
         r = IntVar()
-
+        self.ch=IntVar()
         def on(num):  # On/Off Buttons
 
             global MAX_NUMBER
@@ -666,7 +666,8 @@ class Application_Interface:
                         fans = True
 
         r.set("1")
-
+        self.ch.set(0)
+        
         def dark():  # Dark Mood
             global darkMood
 
@@ -795,6 +796,14 @@ class Application_Interface:
                     ton8.config(image=on_image)
 
 
+        def student_section(x):
+            if x==0:
+                increase.config(state=DISABLED)
+                decrease.config(state=DISABLED)
+            else:
+                increase.config(state=ACTIVE)
+                decrease.config(state=ACTIVE)
+
         def mode(value):  # Mode Radio Button
             global auto
             if value == 1:
@@ -853,14 +862,15 @@ class Application_Interface:
         l = Label(root, image=logo_image)
         configs = Label(root, text="Configurations", fg="#AA0121", font=(
             "Arial", 30, "italic", "underline"), padx=5)
+        
+        check = Checkbutton(root, variable=self.ch,command=lambda:student_section(self.ch.get()))
+        check.pack()
         line = Label(root, fg="#134982", text="___________________________________________________________________________________________________________________________________________________________________", font=("Arial", 20))
         number = Label(root, text=f"Students per section",
                        font=("Arial", 20, "bold"), fg="#134982")
         students = Label(root, text=MAX_NUMBER, font=("Arial", 20), fg="black")
-        increase = Button(root, text="+", font=("Arial", 15),
-                          command=lambda: adjustNumber(1), bd=0, image=plus_image)
-        decrease = Button(root, text="-", font=("Arial", 15), padx=3,
-                          command=lambda: adjustNumber(2), image=minus_image, bd=0)
+        increase = Button(root, text="+", font=("Arial", 15),command=lambda: adjustNumber(1), bd=0, image=plus_image)
+        decrease = Button(root, text="-", font=("Arial", 15), padx=3,command=lambda: adjustNumber(2), image=minus_image, bd=0)
 
         temp_label = Label(root, text=f"Fans", font=(
             "Arial", 20, "bold"), fg="#134982")
@@ -968,6 +978,7 @@ class Application_Interface:
         ton8.place(x=1280, y=710)
 
         mode(1)
+        student_section(0)
         mainloop()
 
 

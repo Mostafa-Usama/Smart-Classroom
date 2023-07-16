@@ -52,93 +52,109 @@ while app.opened:
 
                 
 
-                    #cv2.putText(img,"Count of faces:"+str(len(faces)),(width//3,heghit//6),font,.9,(0,0,255),3) 
-                    #text (image, string, bottom left point, font, font size, color, thickness)
+                #cv2.putText(img,"Count of faces:"+str(len(faces)),(width//3,heghit//6),font,.9,(0,0,255),3) 
+                #text (image, string, bottom left point, font, font size, color, thickness)
                 #cv2.imshow('img',img)    # show image 
 
-            print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_right}")
+            print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_left}")
+            total=33
+            if app.ch.get()==0:
+                total+=top_left+top_right+bottom_left+bottom_left
+            
+                
+                if total>105 and top_left>=1:
+                    print("tl")
+                elif total>70 and top_right+top_left>=1:
+                    print("tr")
+                elif total>35 and bottom_left+top_right+top_left>=1:
+                    print("bl")
+                elif total>=1:
+                    print("br")
 
-            if top_left >= Max_Number:
-                if getfan():#and 0 >= Max_Number: 
-                    fe = '1'
-                    lst[0]=False
-                    lst[1]=False
-                    s.write(fe.encode('utf-8'))
+
+            elif app.ch.get()==1:
+
+                if top_left >= Max_Number:
+                    if getfan():#and 0 >= Max_Number: 
+                        fe = '1'
+                        lst[0]=False
+                        lst[1]=False
+                        s.write(fe.encode('utf-8'))
+                    else:
+                        fe = 'w'
+                        lst[0]=False
+                        lst[1]=True
+                        s.write(fe.encode('utf-8'))
                 else:
-                    fe = 'w'
-                    lst[0]=False
+                    lst[0]=True
                     lst[1]=True
+                    fe = '5'
                     s.write(fe.encode('utf-8'))
-            else:
-                lst[0]=True
-                lst[1]=True
-                fe = '5'
-                s.write(fe.encode('utf-8'))
 
 
-            if top_right >= Max_Number: #and 0 < Max_Number:
-                if getfan():#and 0 >= Max_Number:
-                    lst[2]=False
-                    lst[3]=False
-                    fe = '2'
-                    s.write(fe.encode('utf-8'))
+                if top_right >= Max_Number: #and 0 < Max_Number:
+                    if getfan():#and 0 >= Max_Number:
+                        lst[2]=False
+                        lst[3]=False
+                        fe = '2'
+                        s.write(fe.encode('utf-8'))
+                    else:
+                        lst[2]=False
+                        lst[3]=True
+                        fe = 'x'
+                        s.write(fe.encode('utf-8'))
+
                 else:
-                    lst[2]=False
+                    lst[2]=True
                     lst[3]=True
-                    fe = 'x'
+                    fe = '6'
                     s.write(fe.encode('utf-8'))
 
-            else:
-                lst[2]=True
-                lst[3]=True
-                fe = '6'
-                s.write(fe.encode('utf-8'))
 
+                if  bottom_left >= Max_Number: #and 0 >= Max_Number:
+                    if getfan():#and 0 >= Max_Number:
+                        lst[4]=False
+                        lst[5]=False
+                        fe = '3'
+                        s.write(fe.encode('utf-8'))
+                    else:
+                        lst[4]=False
+                        lst[5]=True
+                        fe = 'y'
+                        s.write(fe.encode('utf-8'))
 
-            if  bottom_left >= Max_Number: #and 0 >= Max_Number:
-                if getfan():#and 0 >= Max_Number:
-                    lst[4]=False
-                    lst[5]=False
-                    fe = '3'
-                    s.write(fe.encode('utf-8'))
                 else:
-                    lst[4]=False
+                    lst[4]=True
                     lst[5]=True
-                    fe = 'y'
+                    fe = '7'
                     s.write(fe.encode('utf-8'))
 
-            else:
-                lst[4]=True
-                lst[5]=True
-                fe = '7'
-                s.write(fe.encode('utf-8'))
-
-            if bottom_right >= Max_Number:
-                if getfan():#and 0 >= Max_Number:
-                    lst[6]=False
-                    lst[7]=False
-                    fe = '4'
-                    s.write(fe.encode('utf-8'))
+                if bottom_right >= Max_Number:
+                    if getfan():#and 0 >= Max_Number:
+                        lst[6]=False
+                        lst[7]=False
+                        fe = '4'
+                        s.write(fe.encode('utf-8'))
+                    else:
+                        lst[6]=False
+                        lst[7]=True
+                        fe = 'z'
+                        s.write(fe.encode('utf-8'))
                 else:
-                    lst[6]=False
+                    lst[6]=True
                     lst[7]=True
-                    fe = 'z'
+                    fe = '8'
                     s.write(fe.encode('utf-8'))
-            else:
-                lst[6]=True
-                lst[7]=True
-                fe = '8'
-                s.write(fe.encode('utf-8'))
 
-            print(fe)
+                print(fe)
 
-            for i in range(100):
-                if not app.opened:
-                    break
-                time.sleep(0.01)
-            #cap.release()
+                for i in range(100):
+                    if not app.opened:
+                        break
+                    time.sleep(0.01)
+                #cap.release()
 
-            #cv2.destroyAllWindows()
+                #cv2.destroyAllWindows()
                     
         #cv2.waitKey(0) # wait for button or X 
         #cv2.destroyAllWindows()
