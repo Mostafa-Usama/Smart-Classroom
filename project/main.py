@@ -57,19 +57,23 @@ while app.opened:
                 #cv2.imshow('img',img)    # show image 
 
             print(f'Top Left: {top_left}', f" Top right: {top_right}",f"Bottom left: {bottom_left}",f"Bottom Right: {bottom_left}")
-            total=33
+            total=100
             if app.ch.get()==0:
                 total+=top_left+top_right+bottom_left+bottom_left
             
                 
                 if total>105 and top_left>=1:
-                    print("tl")
+                    fe = 't'
+                    s.write(fe.encode('utf-8'))
                 elif total>70 and top_right+top_left>=1:
-                    print("tr")
+                    fe = 's'
+                    s.write(fe.encode('utf-8'))
                 elif total>35 and bottom_left+top_right+top_left>=1:
-                    print("bl")
+                    fe = 'r'
+                    s.write(fe.encode('utf-8'))
                 elif total>=1:
-                    print("br")
+                    fe = 'q'
+                    s.write(fe.encode('utf-8'))
 
 
             elif app.ch.get()==1:
