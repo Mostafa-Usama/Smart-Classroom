@@ -10,7 +10,7 @@
 * [Credits](#Credits)
 
 ## Project's Title
-  <p align='center'> <imghttps://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/DarkMode1.png height="400" width="400"></p>
+  <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/DarkMode.png height="400" width="400"></p>
  
 
 ## Project Description
