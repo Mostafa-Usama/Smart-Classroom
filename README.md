@@ -75,7 +75,19 @@
 
 - If you successfuly manage to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
   - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
-- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To donwload Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view target="_blank">Click Here </a>
+- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To donwload Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view>Click Here </a>
+- After installing Protues, you can go to the 'Protues Design' folder and open up the 'test.pdsprj' file.
+- after opening, it should look like this
+  
+<p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-17%20214411.png height=400 width=700></p>   
+
+- You can now run the simlulation using the button on the bottom left corner
+ 
+<p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-17%20214834.png height=400 width=700></p> 
+
+- Now the simulation is running and waiting for some action from the application.
+- For more information, check out the demo video.
+
 ## Tools
 
 - SQLite Database
