@@ -523,6 +523,9 @@ class Application_Interface:
         global darkMood
         darkMood = False
         style = tk.Style()
+        check_style = tk.Style()
+        check_style.configure("Custom.TCheckbutton", indicatorsize=20,font=(
+            "Arial", 15, "bold"), fg="#134982")
         root = Toplevel()
         root.protocol("WM_DELETE_WINDOW", disable_event)
         style.configure("BW.TRadiobutton", font=("Arial", 17))
@@ -550,22 +553,7 @@ class Application_Interface:
                 ton6.config(command=None)
                 ton7.config(command=None)
                 ton8.config(command=None)
-            # elif num == 9:
-                
-            #     for i in range(len(lst)):
-            #         lst[i] = False
-              
-            #     ton1.config(image=on_image)
-            #     ton2.config(image=on_image)
-            #     ton3.config(image=on_image)
-            #     ton4.config(image=on_image)
-            #     ton5.config(image=on_image)
-            #     ton6.config(image=on_image)
-            #     ton7.config(image=on_image)
-            #     ton8.config(image=on_image)
-                
-            #     fe = 'r'
-            #     s.write(fe.encode('utf-8'))
+
             elif num == 0:
                 if lst[num]:
                     ton1.config(image=on_image)
@@ -667,97 +655,6 @@ class Application_Interface:
 
         r.set("1")
         self.ch.set(0)
-        
-        def dark():  # Dark Mood
-            global darkMood
-
-            if not darkMood:
-                darkMood = True
-                dark_mood.config(text="Light Mood", bg='black', fg='#F0F0F0')
-                root.configure(bg="#111111")
-                style.configure("TRadiobutton", font=(
-                    "Arial", 17), background="#111111", foreground="white")
-                l.config(bg="#111111", image=dark_logo)
-                configs.config(bg="#111111", fg="#4E31AA")
-                line.config(bg="#111111", fg="white")
-                number.config(bg="#111111", fg="#E94560")
-                students.config(bg="#111111", fg="white")
-                increase.config(bg="#111111", activebackground="#111111")
-                decrease.config(bg="#111111", activebackground="#111111")
-                modes.config(bg="#111111", fg="#E94560")
-                # autos.config(bg="#111111")
-                # manual.config(bg="#111111")
-                devices.config(bg="#111111", fg="#4E31AA")
-                led1.config(bg="#111111", fg="#E94560")
-                fan1.config(bg="#111111", fg="#E94560")
-                ton1.config(bg="#111111", activebackground="#111111")
-                ton2.config(bg="#111111", activebackground="#111111")
-                temp_label.config(
-                    bg="#111111", activebackground="#111111", fg="#E94560")
-                # tempe.config(bg="#111111",activebackground="#111111",fg="white")
-                te.config(bg="#111111", activebackground="#111111")
-                # decrease_temp.config(bg="#111111",activebackground="#111111")
-                section1.config(
-                    bg="#111111", activebackground="#111111", fg="#E94560")
-                section2.config(
-                    bg="#111111", activebackground="#111111", fg="#E94560")
-                section3.config(
-                    bg="#111111", activebackground="#111111", fg="#E94560")
-                section4.config(
-                    bg="#111111", activebackground="#111111", fg="#E94560")
-                ton3.config(bg="#111111", activebackground="#111111")
-                ton4.config(bg="#111111", activebackground="#111111")
-                ton5.config(bg="#111111", activebackground="#111111")
-                ton6.config(bg="#111111", activebackground="#111111")
-                ton7.config(bg="#111111", activebackground="#111111")
-                ton8.config(bg="#111111", activebackground="#111111")
-                led2.config(bg="#111111", fg="#E94560")
-                fan2.config(bg="#111111", fg="#E94560")
-                led3.config(bg="#111111", fg="#E94560")
-                fan3.config(bg="#111111", fg="#E94560")
-                led4.config(bg="#111111", fg="#E94560")
-                fan4.config(bg="#111111", fg="#E94560")
-
-            else:
-                darkMood = False
-                dark_mood.config(text="Dark Mood", bg='black', fg='#F0F0F0')
-                root.configure(bg="#F0F0F0")
-                style.configure("TRadiobutton", font=(
-                    "Arial", 17), background="#F0F0F0", foreground="black")
-                l.config(bg="#F0F0F0", image=logo_image)
-                configs.config(bg="#F0F0F0", fg="#AA0121")
-                line.config(bg="#F0F0F0", fg="black")
-                number.config(bg="#F0F0F0", fg="#134982")
-                students.config(bg="#F0F0F0", fg="black")
-                increase.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                decrease.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                modes.config(bg="#F0F0F0", fg="#134982")
-                devices.config(bg="#F0F0F0", fg="#AA0121")
-                led1.config(bg="#F0F0F0", fg="#134982")
-                fan1.config(bg="#F0F0F0", fg="#134982")
-                ton1.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton2.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                temp_label.config(bg="#F0F0F0", fg="#AA0121")
-                # tempe.config(bg="#F0F0F0",fg="black")
-                te.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                # decrease_temp.config(bg="#F0F0F0",activebackground="#F0F0F0")
-                section1.config(bg="#F0F0F0", fg="#AA0121")
-                section2.config(bg="#F0F0F0", fg="#AA0121")
-                section3.config(bg="#F0F0F0", fg="#AA0121")
-                section4.config(bg="#F0F0F0", fg="#AA0121")
-                ton3.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton4.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton5.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton6.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton7.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                ton8.config(bg="#F0F0F0", activebackground="#F0F0F0")
-                led2.config(bg="#F0F0F0", fg="#134982")
-                fan2.config(bg="#F0F0F0", fg="#134982")
-                led3.config(bg="#F0F0F0", fg="#134982")
-                fan3.config(bg="#F0F0F0", fg="#134982")
-                led4.config(bg="#F0F0F0", fg="#134982")
-                fan4.config(bg="#F0F0F0", fg="#134982")
-
 
         def on_off(mod,val):
             if mod==2:#off
@@ -809,6 +706,19 @@ class Application_Interface:
             if value == 1:
                 auto = True
                 getMode()
+                ton1.config(state=DISABLED)
+                ton2.config(state=DISABLED)
+                ton3.config(state=DISABLED)
+                ton4.config(state=DISABLED)
+                ton5.config(state=DISABLED)
+                ton6.config(state=DISABLED)
+                ton7.config(state=DISABLED)
+                ton8.config(state=DISABLED)
+
+                te.config(state=ACTIVE)
+                increase.config(state=ACTIVE)
+                decrease.config(state=ACTIVE)
+                check.config(state=ACTIVE)
 
             elif value == 2:
                 auto = False
@@ -830,6 +740,11 @@ class Application_Interface:
                 ton6.config(state=ACTIVE, command=lambda: on(5))
                 ton7.config(state=ACTIVE, command=lambda: on(6))
                 ton8.config(state=ACTIVE, command=lambda: on(7))
+                
+                te.config(state=DISABLED)
+                increase.config(state=DISABLED)
+                decrease.config(state=DISABLED)
+                check.config(state=DISABLED)
 
         def adjustNumber(value):  # Plus and Minus sign buttons
             global MAX_NUMBER
@@ -841,30 +756,21 @@ class Application_Interface:
                     MAX_NUMBER -= 1
                     students.config(text=MAX_NUMBER)
 
-        # def adjustTemp(value): # Plus and Minus sign buttons
-        #         global temp
-        #         if value == 1:
-        #             temp += 1
-        #             tempe.config(text=temp)
-        #         else:
-        #             if not (temp <= 1):
-        #                 temp -= 1
-        #                 tempe.config(text=temp)
-
         plus_image = PhotoImage(file="icons/plus.png")
         minus_image = PhotoImage(file="icons/minus.png")
         on_image = PhotoImage(file="icons/on.png")
         off_image = PhotoImage(file="icons/off.png")
         logo_image = PhotoImage(file="icons/LightMode1.png")
-        dark_logo = PhotoImage(file="icons/DarkMode1.png")
-        quit = Button(root, text="Exit", command=self.des, width=8, font=(
+        # dark_logo = PhotoImage(file="icons/DarkMode1.png")
+        quit = Button(root, text="Exit", command=self.des, width=15, font=(
             "Arial 10 bold"), bd=3, bg="#AA0121", fg='white', activebackground='#AA0121')
         l = Label(root, image=logo_image)
         configs = Label(root, text="Configurations", fg="#AA0121", font=(
             "Arial", 30, "italic", "underline"), padx=5)
         
-        check = Checkbutton(root, variable=self.ch,command=lambda:student_section(self.ch.get()))
-        check.pack()
+        check = Checkbutton(root, text="Enabled",variable=self.ch,command=lambda:student_section(self.ch.get()),font=(
+            "Arial", 12, "bold"), fg="#134982", activeforeground="#134982")
+        check.place(x=280, y=220)
         line = Label(root, fg="#134982", text="___________________________________________________________________________________________________________________________________________________________________", font=("Arial", 20))
         number = Label(root, text=f"Students per section",
                        font=("Arial", 20, "bold"), fg="#134982")
@@ -874,16 +780,10 @@ class Application_Interface:
 
         temp_label = Label(root, text=f"Fans", font=(
             "Arial", 20, "bold"), fg="#134982")
-        # tempe = Label(root,text=temp,font=("Arial",20),fg="black")
-        # increase_temp = Button(root,text="+",font=("Arial",15),command=lambda:adjustTemp(1),bd=0,image=plus_image)
-        # decrease_temp = Button(root,text="-",font=("Arial",15),padx=3,command=lambda:adjustTemp(2),image=minus_image,bd=0)
-
-        # temp_label = Label(root,text=f"Temperature", font=("Arial",20,"bold"),fg="#134982")
         te = Button(root, image=off_image,
                     command=lambda: on(8), bd=0, padx=20)
 
-        dark_mood = Button(root, text="Dark Mode", command=dark, width=8, font=(
-            "Arial 10 bold"), bd=3, bg="black", fg='White', activeforeground='white', activebackground='black')
+       
         modes = Label(root, text="Modes", font=(
             "Arial", 20, "bold"), fg="#134982")
         autos = tk.Radiobutton(root, text="Auto", variable=r, value=1, command=lambda: mode(
@@ -935,13 +835,9 @@ class Application_Interface:
 
         temp_label.place(x=1155, y=270)
         te.place(x=1150, y=300)
-        # tempe.place(x=1160,y=320)
-        # decrease_temp.place(x=1100,y=320)
-        # increase_temp.place(x=1220,y=320)
-        quit.place(x=78, y=0)
+        quit.place(x=1230, y=0)
 
         l.place(x=650, y=-35)
-        dark_mood.place(x=0, y=0)
         configs.place(x=640, y=180)
         number.place(x=200, y=270)
         increase.place(x=370, y=320)
@@ -999,4 +895,4 @@ def getfan():
 
 
 app = Application_Interface()
-# app.run()
+app.run()
