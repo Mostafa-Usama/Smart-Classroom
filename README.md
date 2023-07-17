@@ -111,12 +111,12 @@
 
 
 ## For More Information
-@ Please Look [Here](https://github.com/Mohamed-Nabi1/Smart-Classroom/tree/main/Documents)
+-Please Look [Here](https://github.com/Mostafa-Usama/Smart-Classroom/tree/main/Documents) for full Documentation. 
 - Documents
-  - project proposal
-  - the software requirements specifications
+  - Project proposal
+  - The software requirements specifications
   - Software Design Document
-  - implementation plan
+  - Implementation plan
   - Test Plan
 - Report
   - part one
@@ -124,7 +124,7 @@
 - Presentation
   - part one
   - part two
-- [Demo](https://github.com/Mohamed-Nabi1/Smart-Classroom/blob/main/demo.mp4)
+- [Demo](https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/demo.mp4)
 
 ## Credits
 - Team Members
