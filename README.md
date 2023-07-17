@@ -75,7 +75,7 @@
 
 - If you successfuly manage to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
   - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
-- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To donwload Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view>Click Here </a>
+- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To donwload Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view target="_blank">Click Here </a>
 ## Tools
 
 - SQLite Database
