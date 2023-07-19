@@ -75,7 +75,7 @@
 
 - If you successfuly manage to open the project, you have to login as an admin first with the username 'admin' and password 'admin' to start adding users and use the system
   - Note that the username and password for the admin are customizable for anyone using the system, but for testing purposes and ease of   use, these credintials will remain as it is.      
-- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To donwload Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view>Click Here </a>
+- Now to simulate and see how the project works in real life, you would need to download Protues software which is used to simulate embedded systems projects. To download Protues <a href=https://drive.google.com/file/d/18dc8n0lpLu9QRzxbgZzciAwhg6NeqnPp/view>Click Here </a>
 - After installing Protues, you can go to the 'Protues Design' folder and open up the 'test.pdsprj' file.
 - after opening, it should look like this
   
@@ -88,16 +88,20 @@
 - Now the simulation is running and waiting for some action from the application.
 - For more information, check out the demo video <a href= "https://www.youtube.com/watch?v=ity_Aa_V_a8&feature=youtu.be">Here</a>.
 
-## Tools
+## Tools and Technologies
 
-- SQLite Database
-- Raspbian OS if RPI exists otherwise Windows OS
-- OpenCV
-- Python
-- Tkinter
-- YOLOv8
-- NumPy
-- Proteus
+- You can find the dataset used to train the head detection model <a href="https://github.com/HCIILAB/SCUT-HEAD-Dataset-Release" >Here</a>
+- We used Roboflow, a website used to train and deploy machine learning models easily, you can check the website <a href="https://roboflow.com/">Here</a>. For more information on how to use the website you can check the video <a href="https://www.youtube.com/watch?v=wuZtUMEiKWY&t=1082s">Here</a>
+
+- Programming language, modules and softwares used
+  - Python
+  - OpenCV
+  - Tkinter
+  - SQLite Database
+  - Raspbian OS if RPI exists otherwise Windows OS
+  - YOLOv8
+  - NumPy
+  - Proteus
 
 ## Hardware
 
