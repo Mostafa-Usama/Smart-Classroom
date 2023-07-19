@@ -86,7 +86,7 @@
 <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/Screenshot%202023-07-17%20214834.png height=400 width=700></p> 
 
 - Now the simulation is running and waiting for some action from the application.
-- For more information, check out the demo video.
+- For more information, check out the demo video <a href= "https://www.youtube.com/watch?v=ity_Aa_V_a8&feature=youtu.be">Here</a>.
 
 ## Tools
 
