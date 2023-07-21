@@ -1,13 +1,13 @@
 ## Table of contents
 
-* [Project's Title](#Project's-Title)
-* [Project Description](#Project-Description)
+* [Project's Title](#"project's-title)
+* [Project Description](#project-description)
 * [Setup](#setup)
 * [How to Use the Project](#How-to-Use-the-Project)
-* [Tools](#Tools)
-* [Hardware Component](#Hardware-Component)
-* [For More Information](#For-More-Information)
-* [Credits](#Credits)
+* [Tools](#tools)
+* [Hardware](#hardware)
+* [For More Information](#for-more-information)
+* [Credits](#credits)
 
 ## Project's Title
   <p align='center'> <img src=https://github.com/Mostafa-Usama/Smart-Classroom/blob/main/project/icons/DarkMode.png height="400" width="400"></p>
